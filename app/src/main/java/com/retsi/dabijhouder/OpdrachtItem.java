@@ -1,17 +1,18 @@
 package com.retsi.dabijhouder;
 
 public class OpdrachtItem{
-    private String typeOpdracht, vakNaam, titel, datum, beschrijving;
+    private String typeOpdracht, vakNaam, titel, datum, beschrijving, typeOpdracht_key;
     private boolean isExpanded;
     private Integer datumTagSorter;
 
-    public OpdrachtItem(String typeOpdracht, String vakNaam, String titel, String datum, String beschrijving, Integer datumKey) {
+    public OpdrachtItem(String typeOpdracht, String vakNaam, String titel, String datum, String beschrijving, Integer datumKey, String OpKey) {
         this.typeOpdracht = typeOpdracht;
         this.vakNaam = vakNaam;
         this.titel = titel;
         this.datum = datum;
         this.beschrijving = beschrijving;
         this.datumTagSorter = datumKey;
+        this.typeOpdracht_key = OpKey;
     }
 
     public OpdrachtItem(String typeOpdracht, String vakNaam, String titel, String datum, String beschrijving) {
@@ -23,12 +24,16 @@ public class OpdrachtItem{
         this.isExpanded = isExpanded;
     }
 
-    public Integer getDatumTagSorter() {
-        return datumTagSorter;
+    public String getTypeOpdracht_key() {
+        return typeOpdracht_key;
     }
 
-    public void setDatumTagSorter(int datumTagSorter) {
-        this.datumTagSorter = datumTagSorter;
+    public void setTypeOpdracht_key(String typeOpdracht_key) {
+        this.typeOpdracht_key = typeOpdracht_key;
+    }
+
+    public Integer getDatumTagSorter() {
+        return datumTagSorter;
     }
 
     public String getTypeOpdracht() {

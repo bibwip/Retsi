@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,7 +35,7 @@ public class AddAssignmentAcitvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_assignment_acitvity);
-
+        typeOpdracht = getString(R.string.Huiswerk_key);
 
         myDb = new DatabaseHelper(this);
         initViews();
@@ -151,6 +152,7 @@ public class AddAssignmentAcitvity extends AppCompatActivity {
                 rbnOverig.setChecked(false);
                 rbnToets.setChecked(false);
                 typeOpdracht = getString(R.string.Huiswerk_key);
+                Toast.makeText(AddAssignmentAcitvity.this, typeOpdracht, Toast.LENGTH_SHORT).show();
             }
         });
         rbnToets.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +171,7 @@ public class AddAssignmentAcitvity extends AppCompatActivity {
                 rbnEindopdracht.setChecked(false);
                 rbnToets.setChecked(false);
                 typeOpdracht = getString(R.string.overig_key);
+                Toast.makeText(AddAssignmentAcitvity.this, typeOpdracht, Toast.LENGTH_SHORT).show();
             }
         });
     }

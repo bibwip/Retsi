@@ -9,36 +9,42 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DaBijhouder">
-        <activity android:name="com.retsi.dabijhouder.EditOpdrachtActivity"
-            android:screenOrientation="portrait"/>
         <activity
-            android:name="com.retsi.dabijhouder.StartupActivity"
-            android:screenOrientation="portrait"
+            android:name=".ImportOpdracht"
+            android:label="@string/title_activity_import_opdracht"
+            android:theme="@style/Theme.DaBijhouder.NoActionBar"
+            android:screenOrientation="userPortrait"/>
+        <activity
+            android:name=".EditOpdrachtActivity"
+            android:screenOrientation="userPortrait" />
+        <activity
+            android:name=".StartupActivity"
             android:configChanges="locale|orientation"
+            android:screenOrientation="userPortrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity
-            android:name="com.retsi.dabijhouder.AddAssignmentAcitvity"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-
-        </activity>
-        <activity android:name="com.retsi.dabijhouder.MainActivity"
-            android:screenOrientation="portrait">
+            android:name=".AddAssignmentAcitvity"
+            android:screenOrientation="userPortrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="userPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter android:label="DeepLink">
+                <action android:name="android.intent.action.VIEW" />
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:host="www.retsi.com"
-                    android:scheme="http"/>
+                    android:host="www.github.com"
+                    android:pathPrefix="/winkelkar/Retsi"
+                    android:scheme="https" />
             </intent-filter>
-
         </activity>
     </application>
 

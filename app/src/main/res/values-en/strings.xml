@@ -34,4 +34,7 @@
     </string-array>
     <string name="deelText">"This is a super cool and usefull app for school (just download it): "</string>
     <string name="overig">Other</string>
+    <string name="importOpdracht">You don\'t have the subject of this assignment do you want to add it or use a different subject?</string>
+    <string name="vakToevoegen">add subject</string>
+    <string name="ander">choose other</string>
 </resources>

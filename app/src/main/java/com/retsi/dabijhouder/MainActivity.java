@@ -13,12 +13,13 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,11 +28,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity{
 
@@ -139,10 +138,19 @@ public class MainActivity extends AppCompatActivity{
                                 return true;
                             case R.id.action_share_opdracht:
                                 Uri.Builder builder = new Uri.Builder();
-                                builder.scheme("http")
-                                        .authority("www.retsi.com")
-                                        .path("/assignment")
-                                        .appendQueryParameter(getString(R.string.TypeOpdracht), mAdapter.getItem(position).getTypeOpdracht());
+                                builder.scheme("https")
+                                        .authority("www.github.com")
+                                        .path("/winkelkar/Retsi")
+                                        .appendQueryParameter(getString(R.string.TypeOpdracht),
+                                                mAdapter.getItem(position).getTypeOpdracht_key())
+                                        .appendQueryParameter(getString(R.string.Titel),
+                                            mAdapter.getItem(position).getTitel())
+                                        .appendQueryParameter(getString(R.string.vaknaam),
+                                            mAdapter.getItem(position).getVakNaam())
+                                        .appendQueryParameter(getString(R.string.datum),
+                                                mAdapter.getItem(position).getDatum())
+                                        .appendQueryParameter(getString(R.string.beschrijving),
+                                                mAdapter.getItem(position).getBeschrijving());
                                 String url = builder.build().toString();
                                 Intent shareItem = new Intent();
                                 shareItem.setAction(Intent.ACTION_SEND)
@@ -163,9 +171,32 @@ public class MainActivity extends AppCompatActivity{
 
         Uri data = getIntent().getData();
         if (data != null) {
+            String vak = data.getQueryParameter(getString(R.string.vaknaam));
             String type = data.getQueryParameter(getString(R.string.TypeOpdracht));
-            myDb.insertData(type, "Nederlands", "kaas", "00-00-0000", "");
-            mAdapter.UpdateItems(SetData());
+            String titel = data.getQueryParameter(getString(R.string.Titel));
+            String datum = data.getQueryParameter(getString(R.string.datum));
+            String bes = data.getQueryParameter(getString(R.string.beschrijving));
+            boolean inlist = false;
+            for (VakItem item: myDb.getAllData2()) {
+                if (vak.equals(item.getVaknaam())) {
+                    inlist = true;
+                    myDb.insertData(type, vak, titel, datum, bes);
+                    mAdapter.UpdateItems(SetData());
+                }
+            }
+
+            if (!inlist) {
+                Toast.makeText(this, "ja", Toast.LENGTH_SHORT).show();
+                Bundle bundle = new Bundle();
+                bundle.putString(getString(R.string.TypeOpdracht), type);
+                bundle.putString(getString(R.string.Titel), titel);
+                bundle.putString(getString(R.string.vaknaam), vak);
+                bundle.putString(getString(R.string.datum), datum);
+                bundle.putString(getString(R.string.beschrijving), bes);
+                Intent intent = new Intent(this, ImportOpdracht.class)
+                        .putExtra("extra", bundle);
+                startActivity(intent);
+            }
         }
 
         shareIntent = new Intent();
@@ -213,6 +244,7 @@ public class MainActivity extends AppCompatActivity{
                 String titel = res.getString(3);
                 String datum = res.getString(4);
                 String bescrhijving = res.getString(5);
+                String TypeKey = res.getString(1);
 
                 switch (typeOpdracht) {
                     case "Toets_key":
@@ -232,7 +264,7 @@ public class MainActivity extends AppCompatActivity{
 
                     String[] SList = datum.split("-");
                     int DatumKey = Integer.parseInt(SList[2] + SList[1] + SList[0]);
-                    OpdrachtItem opdracht = new OpdrachtItem(typeOpdracht, vak, titel, datum, bescrhijving, DatumKey);
+                    OpdrachtItem opdracht = new OpdrachtItem(typeOpdracht, vak, titel, datum, bescrhijving, DatumKey, TypeKey);
                     items.add(opdracht);
 
                 }

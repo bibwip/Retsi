@@ -51,8 +51,11 @@
     <string name="bewerk_opdracht">Bewerk hier je opdracht</string>
     <string name="type_opdracht">Type Opdracht</string>
     <string name="vak">Vak</string>
+    <string name="vakToevoegen">Toevoegen</string>
+    <string name="ander">Ander kiezen</string>
 
     <string name="deelText">Dit is een vet gaafe en handige app voor school (download hem gwn): </string>
+    <string name="importOpdracht">Het vak van deze opdracht heeft u niet. Wilt u deze toevoegen of een ander vak gebruiken?</string>
 
     <string-array name="typeOpdrachten">
         <item>Huiswerk</item>
@@ -67,5 +70,6 @@
         <item>eindopdracht_key</item>
         <item>overig_key</item>
     </string-array>
+
 
 </resources>
