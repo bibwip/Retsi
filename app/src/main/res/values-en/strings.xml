@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Eindopdracht" translatable="false">Final Assignment</string>
+    <string name="Toets" translatable="false">Exam</string>
+    <string name="VoegOpdracht">Add an assignment</string>
+    <string name="extraInfo">Extra info (optional)</string>
+    <string name="save">Save</string>
+    <string name="kiesDatum">Choose Date</string>
+    <string name="deel">Share</string>
+    <string name="instellingen">Setup</string>
+    <string name="welcome">Welcome to Retsi</string>
+    <string name="kies_taal">Choose your prefered language</string>
+    <string name="kies_vakken">Add here your subjects</string>
+    <string name="kies_vak_hint">Insert subject name</string>
+    <string name="voeg_vak_knop_tekst">Add subject</string>
+    <string name="Huiswerk">Homework</string>
+    <string name="deleted_opdracht">Assignment deleted</string>
+    <string name="terug">undo</string>
+    <string name="error">This part is neccesary</string>
+    <string name="datum_error">Date not selected</string>
+    <string name="alles">All</string>
+    <string name="lange_zin_startup">You can always come back to change this</string>
+    <string name="bewerk">Edit</string>
+    <string name="bewerk_opdracht">Edit here your assignment</string>
+    <string name="type_opdracht">Assignment Type</string>
+    <string name="vak">Subject</string>
+
+
+    <string-array name="typeOpdrachten">
+        <item>Homework</item>
+        <item>Exam</item>
+        <item>Final assignment</item>
+        <item>Other</item>
+    </string-array>
+    <string name="deelText">"This is a super cool and usefull app for school (just download it): "</string>
+    <string name="overig">Other</string>
+</resources>

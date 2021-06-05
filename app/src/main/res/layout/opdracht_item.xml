@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/opdrachtItem"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="7dp"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/tv_opdracht_item_kleur"
+        android:layout_width="16dp"
+        android:layout_height="match_parent"
+        android:background="@color/background"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="40dp"
+            android:id="@+id/rel_layout_bigga_cardview">
+
+            <RelativeLayout
+                android:id="@+id/collapsedRelLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <TextView
+                    android:id="@+id/typeOpdracht"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="@string/Eindopdracht"
+                    android:layout_below="@+id/opdrachtTitel"/>
+
+                <TextView
+                    android:id="@+id/opdrachtVak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="150dp"
+                    android:layout_alignParentLeft="true"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="natuurkunde" />
+
+                <TextView
+                    android:id="@+id/opdrachtTitel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="Paragraaf 6"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/opdrachtDatum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/typeOpdracht"
+                    android:layout_alignParentEnd="true"
+                    android:text="Datum"
+                    android:layout_below="@+id/opdrachtVak"
+                    android:layout_alignLeft="@+id/opdrachtVak"/>
+
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/collapsedRelLayout"
+                android:id="@+id/expandedRelLayout"
+                android:visibility="visible"
+                android:paddingTop="7dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="3dp"
+                    android:src="@drawable/lijn"
+                    android:id="@+id/_____lijn"
+                    android:layout_marginEnd="30dp"
+                    app:layout_constraintTop_toTopOf="parent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Beschrijving"
+                    android:layout_marginTop="5dp"
+                    android:layout_below="@+id/_____lijn"
+                    android:id="@+id/opdrachtBeschrijving"/>
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_check"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/img_btn_check_opdracht"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundcornerforbutton"/>
+
+
+    </RelativeLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

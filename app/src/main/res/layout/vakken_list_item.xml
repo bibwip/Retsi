@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/background"
+    app:cardCornerRadius="7dp"
+    android:elevation="6dp"
+    android:layout_centerHorizontal="true"
+    android:layout_margin="5dp"
+    android:id="@+id/vak_item_card">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/tv_color_picker"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="@color/cardview_shadow_start_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_color_picker"
+            android:src="@drawable/ic_color_picker"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_color_picker"
+            app:layout_constraintEnd_toEndOf="@+id/tv_color_picker"
+            app:layout_constraintStart_toStartOf="@+id/tv_color_picker"
+            app:layout_constraintTop_toTopOf="@+id/tv_color_picker"
+            android:scaleY="1.5"
+            android:scaleX="1.5"/>
+
+
+        <TextView
+            android:id="@+id/tv_vak_list_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="15dp"
+            android:fontFamily="@font/roboto_slab"
+            android:text="Aardrijkskunde"
+            android:textColor="@color/standard"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_delete_vak"
+            app:layout_constraintStart_toEndOf="@+id/tv_color_picker"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/tv_delete_vak"
+            style="@style/TextAppearance.AppCompat.Body2"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:background="#60F44336"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/image_delete_vak"
+            android:src="@drawable/ic_delete"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_delete_vak"
+            app:layout_constraintEnd_toEndOf="@+id/tv_delete_vak"
+            app:layout_constraintStart_toStartOf="@+id/tv_delete_vak"
+            app:layout_constraintTop_toTopOf="@+id/tv_delete_vak"
+            android:scaleY="1.5"
+            android:scaleX="1.5"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+</androidx.cardview.widget.CardView>

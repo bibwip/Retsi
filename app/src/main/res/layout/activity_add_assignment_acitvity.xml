@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddAssignmentAcitvity"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="@string/VoegOpdracht"
+        android:textColor="@color/standard"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/lijn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <RadioGroup
+        android:id="@+id/radioGroupTypeAssignment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="0.5">
+
+            <RadioButton
+                android:id="@+id/rbnHuiswerk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:buttonTint="@color/standard"
+                android:checked="true"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/Huiswerk" />
+            <RadioButton
+                android:id="@+id/rbnToets"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:buttonTint="@color/standard"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/Toets" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rbnEindopdracht"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:buttonTint="@color/standard"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/Eindopdracht" />
+
+            <RadioButton
+                android:id="@+id/rbnOverig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:buttonTint="@color/standard"
+                android:fontFamily="@font/roboto_slab"
+                android:text="@string/overig" />
+
+        </LinearLayout>
+
+
+
+
+    </RadioGroup>
+
+    <Spinner
+        android:id="@+id/spinnerVakken"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/stroke_bg"
+        android:popupBackground="#FDD08C"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="@+id/radioGroupTypeAssignment"
+        app:layout_constraintStart_toStartOf="@+id/radioGroupTypeAssignment"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupTypeAssignment" />
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="calendar"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupTypeAssignment" />
+
+    <Button
+        android:id="@+id/btn_kies_datum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/teal_200"
+        android:elevation="4dp"
+        android:fontFamily="@font/roboto_slab"
+        android:text="@string/kiesDatum"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerVakken"
+        app:layout_constraintStart_toStartOf="@+id/spinnerVakken"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerVakken" />
+
+    <TextView
+        android:id="@+id/tv_gekozen_datum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@+id/btn_kies_datum"
+        app:layout_constraintStart_toStartOf="@+id/btn_kies_datum"
+        app:layout_constraintTop_toBottomOf="@+id/btn_kies_datum" />
+
+
+    <EditText
+        android:id="@+id/edtTxtOpdrachtNaam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="24dp"
+        android:hint="@string/Titel"
+        android:singleLine="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_gekozen_datum" />
+
+    <EditText
+        android:id="@+id/edtTxtBeschrijving"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="16dp"
+        android:hint="@string/extraInfo"
+        android:singleLine="false"
+        app:layout_constraintEnd_toEndOf="@+id/edtTxtOpdrachtNaam"
+        app:layout_constraintStart_toStartOf="@+id/edtTxtOpdrachtNaam"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtOpdrachtNaam" />
+
+    <Button
+        android:id="@+id/btnMakeAssignment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/teal_200"
+        android:elevation="4dp"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtTxtBeschrijving" />
+
+    <Button
+        android:id="@+id/btn_ok_datum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/teal_200"
+        android:elevation="4dp"
+        android:text="@android:string/ok"
+        android:textAllCaps="true"
+        android:textSize="17sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/datePicker" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

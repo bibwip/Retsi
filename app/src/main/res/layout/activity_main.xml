@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/coordinatorLayoutForMain"
+    android:background="@color/background"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rel_layout_menu">
+
+            <ImageButton
+                android:id="@+id/img_btn_open_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:backgroundTint="@color/teal_200"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_arrow_down"/>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main_filters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:visibility="visible">
+
+                <ImageButton
+                    android:id="@+id/img_btn_close_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_arrow_up"
+                    app:backgroundTint="@color/teal_200"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/checkbox_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="@string/alles"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_huiswerk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="@string/Huiswerk"
+                    app:layout_constraintEnd_toStartOf="@+id/img_btn_close_menu"
+                    app:layout_constraintStart_toEndOf="@+id/checkBox_eindopdracht"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_eindopdracht"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="@string/Eindopdracht"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/checkbox_all" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_toets"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="@string/Toets"
+                    app:layout_constraintStart_toStartOf="@+id/checkBox_huiswerk"
+                    app:layout_constraintTop_toBottomOf="@+id/checkBox_huiswerk" />
+
+                <CheckBox
+                    android:id="@+id/checkBox_overig"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab"
+                    android:text="@string/overig"
+                    app:layout_constraintBottom_toBottomOf="@+id/checkBox_toets"
+                    app:layout_constraintEnd_toEndOf="@+id/img_btn_close_menu"
+                    app:layout_constraintTop_toTopOf="@+id/checkBox_toets" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:src="@drawable/lijn"
+                android:layout_below="@+id/main_filters"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/_____lijn2"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:src="@drawable/lijn"
+                android:layout_below="@+id/img_btn_open_menu"
+                android:layout_marginHorizontal="10dp"
+                android:id="@+id/_____lijn3"
+                android:visibility="gone"/>
+
+
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="70dp"
+            android:layout_below="@+id/rel_layout_menu"
+            android:layout_marginTop="5dp" />
+
+    </RelativeLayout>
+
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_goto_add_assignment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/main"
+        app:elevation="6dp"
+        android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_add" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

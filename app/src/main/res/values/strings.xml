@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name" translatable="false">Retsi</string>
+    <string name="version_name" translatable="false">1.0</string>
+
+    <!---Important big use thingys-->
+    <string name="Eindopdracht">Eindopdracht</string>
+    <string name="Toets">Toets</string>
+    <string name="Huiswerk">Huiswerk</string>
+    <string name="Eindopdracht_key" translatable="false">eindopdracht_key</string>
+    <string name="Toets_key" translatable="false">Toets_key</string>
+    <string name="Huiswerk_key" translatable="false">Huiswerk_key</string>
+    <string name="overig">Overig</string>
+    <string name="overig_key" translatable="false">overig_key</string>
+
+    <string name="prefs" translatable="false">com.example.dabijhouder</string>
+
+
+    <!---notifications-->
+    <string name="channel_opdrachten" translatable="false">opdrachten</string>
+    <string name="channel_description" translatable="false">Zet dit aan om meldingen te ontvangen voor opdrachten</string>
+
+    <!---Assignment strings-->
+    <string name="Titel" translatable="false">Titel</string>
+    <string name="TypeOpdracht" translatable="false">TypeOpdracht</string>
+    <string name="vaknaam" translatable="false">NaamVak</string>
+    <string name="datum" translatable="false">Datum</string>
+    <string name="beschrijving" translatable="false">Beschrijving</string>
+
+
+    <!---Other text-->
+    <string name="VoegOpdracht">Voeg een opdracht toe</string>
+    <string name="extraInfo">Beschrijving (optioneel)</string>
+    <string name="save">Bewaar</string>
+    <string name="kiesDatum">Kies Datum</string>
+    <string name="deel">Deel</string>
+    <string name="instellingen">Instellingen</string>
+    <string name="welcome">Welkom bij Retsi</string>
+    <string name="kies_taal">Kies je taal voorkeur</string>
+    <string name="engels" translatable="false">English</string>
+    <string name="nederlands" translatable="false">Nederlands</string>
+    <string name="kies_vakken">Voeg hier je vakken toe</string>
+    <string name="kies_vak_hint">Vul vaknaam in</string>
+    <string name="voeg_vak_knop_tekst">Voeg toe</string>
+    <string name="deleted_opdracht">Opdracht verwijderd</string>
+    <string name="terug">ongedaan maken</string>
+    <string name="error">Dit onderdeel is vereist</string>
+    <string name="datum_error">Datum niet gekozen</string>
+    <string name="alles">Alles</string>
+    <string name="lange_zin_startup">Je kan dit altijd nog aanpassen</string>
+    <string name="bewerk">Bewerken</string>
+    <string name="bewerk_opdracht">Bewerk hier je opdracht</string>
+    <string name="type_opdracht">Type Opdracht</string>
+    <string name="vak">Vak</string>
+
+    <string name="deelText">Dit is een vet gaafe en handige app voor school (download hem gwn): </string>
+
+    <string-array name="typeOpdrachten">
+        <item>Huiswerk</item>
+        <item>Toets</item>
+        <item>Eindopdracht</item>
+        <item>Overig</item>
+    </string-array>
+
+    <string-array name="opdrachtkeys">
+        <item>Huiswerk_key</item>
+        <item>Toets_key</item>
+        <item>eindopdracht_key</item>
+        <item>overig_key</item>
+    </string-array>
+
+</resources>

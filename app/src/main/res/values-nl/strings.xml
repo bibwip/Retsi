@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Toets" translatable="false">Toets</string>
+    <string name="VoegOpdracht">Voeg een opdracht toe</string>
+    <string name="extraInfo">Beschrijving (optioneel)</string>
+    <string name="save">Bewaar</string>
+    <string name="kiesDatum">Kies Datum</string>
+    <string name="deel">Deel</string>
+    <string name="instellingen">Instellingen</string>
+    <string name="welcome">Welkom bij Retsi</string>
+    <string name="kies_taal">Kies je taal voorkeur</string>
+    <string name="kies_vakken">Voeg hier je vakken toe</string>
+    <string name="kies_vak_hint">Vul vaknaam in</string>
+    <string name="voeg_vak_knop_tekst">Voeg toe</string>
+    <string name="Huiswerk">Huiswerk</string>
+    <string name="Eindopdracht" translatable="false">Eindopdracht</string>
+    <string name="deleted_opdracht">Opdracht verwijderd</string>
+    <string name="terug">ongedaan maken</string>
+    <string name="error">Dit onderdeel is vereist</string>
+    <string name="datum_error">Datum niet gekozen</string>
+    <string name="alles">Alles</string>
+    <string name="lange_zin_startup">Je kan dit altijd nog aanpassen</string>
+    <string name="bewerk">Bewerken</string>
+    <string name="bewerk_opdracht">Bewerk hier je opdracht</string>
+    <string name="type_opdracht">Type Opdracht</string>
+    <string name="vak">Vak</string>
+
+
+    <string-array name="typeOpdrachten">
+        <item>Huiswerk</item>
+        <item>Toets</item>
+        <item>Eindopdracht</item>
+        <item>Overig</item>
+    </string-array>
+    <string name="deelText">"Dit is een vet gaafe en handige app voor school (download hem gwn): "</string>
+    <string name="overig">Overig</string>
+</resources>
