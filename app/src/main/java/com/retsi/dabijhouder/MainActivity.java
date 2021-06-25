@@ -19,7 +19,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity{
     ImageButton imgBtnClose, imgBtnOpen;
     ImageView lijn, lijn2;
     ConstraintLayout filtermenu;
-    ArrayList<String> chosenFilters = new ArrayList<String>();
+    ArrayList<String> chosenFilters = new ArrayList<>();
 
 
     @Override
@@ -64,12 +63,9 @@ public class MainActivity extends AppCompatActivity{
 
         btnGotoAddAssignment = findViewById(R.id.btn_goto_add_assignment);
 
-        btnGotoAddAssignment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddAssignmentAcitvity.class);
-                startActivity(intent);
-            }
+        btnGotoAddAssignment.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, AddAssignmentAcitvity.class);
+            startActivity(intent);
         });
         RecyclerView recyclerView = findViewById(R.id.main_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

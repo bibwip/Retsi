@@ -37,4 +37,5 @@
     <string name="importOpdracht">Het vak van deze opdracht heeft u niet. Wilt u deze toevoegen of een ander vak gebruiken?</string>
     <string name="vakToevoegen">Toevoegen</string>
     <string name="ander">Ander kiezen</string>
+    <string name="title_activity_import_opdracht">Import Assignment</string>
 </resources>

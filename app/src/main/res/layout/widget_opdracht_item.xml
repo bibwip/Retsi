@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="65dp"
+    android:id="@+id/widget_item"
+    android:background="@drawable/widget_item_background">
+
+    <TextView
+        android:id="@+id/widget_item_color"
+        android:layout_width="16dp"
+        android:background="@drawable/widget_color_background"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/widget_item_titel"
+        android:layout_marginTop="7dp"
+        android:layout_marginStart="12dp"
+        android:text="titel"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/widget_item_color"/>
+
+    <TextView
+        android:id="@+id/widget_item_typeOpdracht"
+        android:layout_marginBottom="7dp"
+        android:layout_marginStart="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="typeopdracht"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/widget_item_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/widget_item_vaknaam"
+        android:text="Nederlands"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="50dp"
+        android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/widget_item_datum"
+        android:text="00-00-0000"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="7dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="50dp"/>
+
+
+
+</RelativeLayout>

@@ -37,4 +37,5 @@
     <string name="importOpdracht">You don\'t have the subject of this assignment do you want to add it or use a different subject?</string>
     <string name="vakToevoegen">add subject</string>
     <string name="ander">choose other</string>
+    <string name="title_activity_import_opdracht">Import Assignment</string>
 </resources>

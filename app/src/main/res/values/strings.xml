@@ -56,6 +56,7 @@
 
     <string name="deelText">Dit is een vet gaafe en handige app voor school (download hem gwn): </string>
     <string name="importOpdracht">Het vak van deze opdracht heeft u niet. Wilt u deze toevoegen of een ander vak gebruiken?</string>
+    <string name="title_activity_import_opdracht">Import Assignment</string>
 
     <string-array name="typeOpdrachten">
         <item>Huiswerk</item>
