@@ -17,6 +17,7 @@ class BigWidgetService : RemoteViewsService() {
 
         private var appWidgetId: Int? = null
         private val items = ArrayList<OpdrachtItem>()
+        private val db = DatabaseHelper(context)
 
         init {
             appWidgetId = intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
@@ -24,7 +25,10 @@ class BigWidgetService : RemoteViewsService() {
         }
 
         override fun onCreate() {
-            val db = DatabaseHelper(context)
+
+        }
+        override fun onDataSetChanged() {
+            items.clear()
             val res: Cursor = db.allData
 
             while (res.moveToNext()) {
@@ -48,7 +52,7 @@ class BigWidgetService : RemoteViewsService() {
                     typeKey)
 
                 items.add(opdracht)
-                }
+            }
 
 
             Collections.sort(items, object : Comparator<OpdrachtItem> {
@@ -56,14 +60,10 @@ class BigWidgetService : RemoteViewsService() {
                     return opdrachtItem.datumTagSorter.compareTo(t1.datumTagSorter)
                 }
             })
-            db.close()
-        }
-
-
-        override fun onDataSetChanged() {
         }
 
         override fun onDestroy() {
+            db.close()
         }
 
         override fun getCount(): Int {
@@ -71,11 +71,14 @@ class BigWidgetService : RemoteViewsService() {
         }
 
         override fun getViewAt(p0: Int): RemoteViews {
-            val views: RemoteViews = RemoteViews(context.packageName, R.layout.widget_opdracht_item)
-            views.setTextViewText(R.id.widget_item_titel, items[p0].titel)
-            views.setTextViewText(R.id.widget_item_datum, items[p0].datum)
-            views.setTextViewText(R.id.widget_item_typeOpdracht, items[p0].typeOpdracht)
-            views.setTextViewText(R.id.widget_item_vaknaam, items[p0].vakNaam)
+            val views: RemoteViews =
+                RemoteViews(context.packageName, R.layout.widget_opdracht_item)
+            if (items.size > 0) {
+                views.setTextViewText(R.id.widget_item_titel, items[p0].titel)
+                views.setTextViewText(R.id.widget_item_datum, items[p0].datum)
+                views.setTextViewText(R.id.widget_item_typeOpdracht, items[p0].typeOpdracht)
+                views.setTextViewText(R.id.widget_item_vaknaam, items[p0].vakNaam)
+            }
             return views
         }
 

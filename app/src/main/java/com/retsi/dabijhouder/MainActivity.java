@@ -1,5 +1,6 @@
 package com.retsi.dabijhouder;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -87,7 +88,7 @@ public class MainActivity extends AppCompatActivity{
                     opdrachtbackup = mAdapter.getItem(position);
                     Snackbar snackbar = Snackbar.make(findViewById(R.id.coordinatorLayoutForMain),
                             R.string.deleted_opdracht, BaseTransientBottomBar.LENGTH_LONG);
-                    snackbar.setAction(R.string.terug, new View.OnClickListener() {
+                    snackbar.setAction(android.R.string.cancel, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                              clicked = true;
@@ -103,6 +104,9 @@ public class MainActivity extends AppCompatActivity{
                             } else {
                                 myDb.deleteOpdracht(opdrachtbackup.getVakNaam(),
                                         opdrachtbackup.getTitel());
+                                Intent updateWidgetIntent = new Intent();
+                                updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                                sendBroadcast(updateWidgetIntent);
                             }
                         }
                     });

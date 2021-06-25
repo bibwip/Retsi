@@ -1,5 +1,7 @@
 package com.retsi.dabijhouder;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -126,10 +128,13 @@ public class AddAssignmentAcitvity extends AppCompatActivity {
 
                     boolean isInserted = myDb.insertData(typeOpdracht, vaknaam, titel, datum, beschrijving);
 
-                    if (isInserted) {
-                        Intent intent = new Intent(AddAssignmentAcitvity.this, MainActivity.class);
-                        startActivity(intent);
-                    }
+                    Intent updateWidgetIntent = new Intent();
+                    updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                    sendBroadcast(updateWidgetIntent);
+
+                    Intent intent = new Intent(AddAssignmentAcitvity.this, MainActivity.class);
+                    startActivity(intent);
+
                 }
             }
         });
@@ -152,7 +157,6 @@ public class AddAssignmentAcitvity extends AppCompatActivity {
                 rbnOverig.setChecked(false);
                 rbnToets.setChecked(false);
                 typeOpdracht = getString(R.string.Huiswerk_key);
-                Toast.makeText(AddAssignmentAcitvity.this, typeOpdracht, Toast.LENGTH_SHORT).show();
             }
         });
         rbnToets.setOnClickListener(new View.OnClickListener() {
@@ -171,7 +175,6 @@ public class AddAssignmentAcitvity extends AppCompatActivity {
                 rbnEindopdracht.setChecked(false);
                 rbnToets.setChecked(false);
                 typeOpdracht = getString(R.string.overig_key);
-                Toast.makeText(AddAssignmentAcitvity.this, typeOpdracht, Toast.LENGTH_SHORT).show();
             }
         });
     }

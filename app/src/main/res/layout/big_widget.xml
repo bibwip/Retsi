@@ -9,10 +9,35 @@
         android:id="@+id/big_widget_stack_view"
         android:loopViews="true"/>
 
-    <TextView
-        android:id="@+id/big_widget_empty_view"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="empty"/>
+        android:id="@+id/big_widget_empty_view">
+        <RelativeLayout
+            android:layout_width="300dp"
+            android:layout_height="65dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/widget_item_background">
+
+            <TextView
+                android:id="@+id/widget_item_color"
+                android:layout_width="16dp"
+                android:background="@drawable/widget_color_background"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nothing_to_do"
+                android:textSize="20sp"
+                android:fontFamily="@font/roboto_slab"
+                android:textStyle="bold"
+                android:textColor="@color/checkbox"/>
+        </RelativeLayout>
+
+    </RelativeLayout>
+
 
 </FrameLayout>

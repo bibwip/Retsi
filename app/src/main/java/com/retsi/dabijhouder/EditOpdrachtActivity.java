@@ -1,5 +1,6 @@
 package com.retsi.dabijhouder;
 
+import android.appwidget.AppWidgetManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -164,6 +165,11 @@ public class EditOpdrachtActivity extends AppCompatActivity {
                 beschrijving = edtBeschtijving.getText().toString();
 
                 myDb.updateOpdracht(String.valueOf(opId), type, vak, titel, datum, beschrijving);
+
+
+                Intent updateWidgetIntent = new Intent();
+                updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+                sendBroadcast(updateWidgetIntent);
 
                 Intent intent = new Intent(EditOpdrachtActivity.this, MainActivity.class);
                 startActivity(intent);

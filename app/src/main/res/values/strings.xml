@@ -53,6 +53,7 @@
     <string name="vak">Vak</string>
     <string name="vakToevoegen">Toevoegen</string>
     <string name="ander">Ander kiezen</string>
+    <string name="nothing_to_do">Tekst groen? Niks te doen!</string>
 
     <string name="deelText">Dit is een vet gaafe en handige app voor school (download hem gwn): </string>
     <string name="importOpdracht">Het vak van deze opdracht heeft u niet. Wilt u deze toevoegen of een ander vak gebruiken?</string>
