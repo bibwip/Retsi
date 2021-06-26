@@ -29,37 +29,7 @@ class BigWidgetService : RemoteViewsService() {
         }
         override fun onDataSetChanged() {
             items.clear()
-            val res: Cursor = db.allData
-
-            while (res.moveToNext()) {
-                var typeOpdracht = res.getString(1)
-                val vak = res.getString(2)
-                val titel = res.getString(3)
-                val datum = res.getString(4)
-                val bescrhijving = res.getString(5)
-                val typeKey = res.getString(1)
-
-                when (typeOpdracht) {
-                    "Toets_key" -> typeOpdracht = context.getString(R.string.Toets)
-                    "eindopdracht_key" -> typeOpdracht = context.getString(R.string.Eindopdracht)
-                    "Huiswerk_key" -> typeOpdracht = context.getString(R.string.Huiswerk)
-                    "overig_key" -> typeOpdracht = context.getString(R.string.overig)
-                }
-
-                val sList = datum.split("-").toTypedArray()
-                val datumKey = (sList[2] + sList[1] + sList[0]).toInt()
-                val opdracht = OpdrachtItem(typeOpdracht, vak, titel, datum, bescrhijving, datumKey,
-                    typeKey)
-
-                items.add(opdracht)
-            }
-
-
-            Collections.sort(items, object : Comparator<OpdrachtItem> {
-                override fun compare(opdrachtItem: OpdrachtItem, t1: OpdrachtItem): Int {
-                    return opdrachtItem.datumTagSorter.compareTo(t1.datumTagSorter)
-                }
-            })
+            items.addAll(db.getAllAssignments(context))
         }
 
         override fun onDestroy() {
@@ -71,8 +41,7 @@ class BigWidgetService : RemoteViewsService() {
         }
 
         override fun getViewAt(p0: Int): RemoteViews {
-            val views: RemoteViews =
-                RemoteViews(context.packageName, R.layout.widget_opdracht_item)
+            val views = RemoteViews(context.packageName, R.layout.widget_opdracht_item)
             if (items.size > 0) {
                 views.setTextViewText(R.id.widget_item_titel, items[p0].titel)
                 views.setTextViewText(R.id.widget_item_datum, items[p0].datum)

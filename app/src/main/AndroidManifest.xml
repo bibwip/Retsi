@@ -58,6 +58,16 @@
 
         <service android:name=".BigWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+        <receiver android:name=".SmallWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/small_widget_info"/>
+        </receiver>
     </application>
 
 </manifest>

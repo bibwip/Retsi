@@ -231,7 +231,7 @@ public class MainActivity extends BaseActivity{
         }
 
         ArrayList<OpdrachtItem> items = new ArrayList<>();
-        Cursor res = myDb.getAllData();
+        Cursor res = myDb.getAllRawData();
         if (res.getCount() == 0) {
             return items;
         }

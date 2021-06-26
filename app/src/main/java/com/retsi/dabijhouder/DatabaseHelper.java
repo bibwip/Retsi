@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Path;
 
 import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -73,10 +76,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public Cursor getAllData() {
+    public Cursor getAllRawData() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+TABLE_NAME, null);
         return res;
+    }
+
+    public ArrayList<OpdrachtItem> getAllAssignments(Context context) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from "+TABLE_NAME, null);
+
+        ArrayList<OpdrachtItem> items = new ArrayList<>();
+
+        while (res.moveToNext()) {
+            String typeOpdracht = res.getString(1);
+            String vak = res.getString(2);
+            String titel = res.getString(3);
+            String datum = res.getString(4);
+            String bescrhijving = res.getString(5);
+            String typeKey = res.getString(1);
+
+            switch (typeOpdracht) {
+                case "Toets_key":
+                    typeOpdracht = context.getString(R.string.Toets);
+                    break;
+                case "eindopdracht_key":
+                    typeOpdracht = context.getString(R.string.Eindopdracht);
+                    break;
+                case "Huiswerk_key":
+                    typeOpdracht = context.getString(R.string.Huiswerk);
+                    break;
+                case "overig_key":
+                    typeOpdracht = context.getString(R.string.overig);
+                    break;
+                default:
+                    break;
+            }
+
+            String[] SList = datum.split("-");
+            int DatumKey = Integer.parseInt(SList[2] + SList[1] + SList[0]);
+            OpdrachtItem opdracht = new OpdrachtItem(typeOpdracht, vak, titel, datum, bescrhijving, DatumKey, typeKey);
+            items.add(opdracht);
+        }
+
+        Collections.sort(items, new Comparator<OpdrachtItem>() {
+            @Override
+            public int compare(OpdrachtItem opdrachtItem, OpdrachtItem t1) {
+                return opdrachtItem.getDatumTagSorter().compareTo(t1.getDatumTagSorter());
+            }
+        });
+        return items;
     }
 
     public boolean insertData(String vak, String kleur) {
