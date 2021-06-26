@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Calendar;
 
-public class AddAssignmentAcitvity extends AppCompatActivity {
+public class AddAssignmentAcitvity extends BaseActivity {
 
     private RadioGroup opdrachtOpties;
     private EditText edtOpdrachtNaam;
@@ -105,8 +105,6 @@ public class AddAssignmentAcitvity extends AppCompatActivity {
         opdrachtDatum.init(Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance()
                 .get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
                 onDateChangedListener);
-
-
     }
 
 

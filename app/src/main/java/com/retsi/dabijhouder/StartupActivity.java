@@ -24,7 +24,7 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 
 import java.util.Locale;
 
-public class StartupActivity extends AppCompatActivity implements VakkenListAdapter.ItemClickListener {
+public class StartupActivity extends BaseActivity implements VakkenListAdapter.ItemClickListener {
 
     Spinner spinner_talen;
     Button btn_save, btn_add;
@@ -108,6 +108,9 @@ public class StartupActivity extends AppCompatActivity implements VakkenListAdap
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
+
+        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        prefs.edit().putString(LANGUAGE_KEY, lang).apply();
     }
 
     public int getLanguage() {

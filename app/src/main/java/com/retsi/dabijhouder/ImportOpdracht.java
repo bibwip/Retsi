@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 
-public class ImportOpdracht extends AppCompatActivity {
+public class ImportOpdracht extends BaseActivity {
 
     Button add, other, save;
     TextView vak;
