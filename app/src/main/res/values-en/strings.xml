@@ -39,4 +39,12 @@
     <string name="ander">choose other</string>
     <string name="title_activity_import_opdracht">Import Assignment</string>
     <string name="nothing_to_do">Woohoo, Nothing to do!</string>
+    <string name="channel_name_huiswerk">Homework notifications</string>
+    <string name="channel_name_eindopdracht">Final assignment notifications</string>
+    <string name="channel_name_toets">Exam notifications</string>
+    <string name="channel_name_overig">Other assignment notifications</string>
+    <string name="channel_description_huiswerk">Turn this on to recieve notifications for upcomming homework deadlines</string>
+    <string name="channel_description_eindopdracht">Turn this on to recieve notifications for upcomming final assignment deadlines</string>
+    <string name="channel_description_toets">Turn this on to recieve notifications for upcomming exams</string>
+    <string name="channel_description_overig">Turn this on to recieve notifications for other deadlines</string>
 </resources>

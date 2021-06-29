@@ -1,7 +1,10 @@
 package com.retsi.dabijhouder;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.DateFormat;
 import java.util.Calendar;
 
 public class AddAssignmentAcitvity extends BaseActivity {
@@ -29,6 +33,7 @@ public class AddAssignmentAcitvity extends BaseActivity {
     private Button bewaarOpdracht, kiesDatum, btnok;
     private TextView tv_gekozen_datum;
     private RadioButton rbnHuiswerk, rbnEindopdracht, rbnToets, rbnOverig;
+    private Calendar c = Calendar.getInstance();
 
     DatabaseHelper myDb;
 
@@ -66,13 +71,6 @@ public class AddAssignmentAcitvity extends BaseActivity {
         DatePicker.OnDateChangedListener onDateChangedListener = new DatePicker.OnDateChangedListener() {
             @Override
             public void onDateChanged(DatePicker datePicker, int i, int i1, int i2) {
-//                Date date = new Date(i, i1, i2);
-//                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-//                datum = sdf.format(date);
-//                System.out.println(date);
-//                System.out.println("Jaar van gekozen: " + i);
-//                System.out.println("Maand van gekozen: " + i1);
-//                System.out.println("Dag van gekozen: " + i2);
 
                 String dag = String.valueOf(i2);
                 String maand = String.valueOf(i1 + 1);
@@ -85,6 +83,8 @@ public class AddAssignmentAcitvity extends BaseActivity {
 
                 tv_gekozen_datum.setTextColor(getResources().getColor(R.color.grey));
                 tv_gekozen_datum.setText(datum);
+
+                c.set(i, i1, i2, 11, 39, 0);
             }
         };
 
@@ -130,12 +130,24 @@ public class AddAssignmentAcitvity extends BaseActivity {
                     updateWidgetIntent.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
                     sendBroadcast(updateWidgetIntent);
 
+                    startAlarm(c);
+                    Toast.makeText(AddAssignmentAcitvity.this, DateFormat.getTimeInstance(DateFormat.SHORT).format(c.getTime()), Toast.LENGTH_SHORT).show();
+
                     Intent intent = new Intent(AddAssignmentAcitvity.this, MainActivity.class);
                     startActivity(intent);
 
                 }
             }
         });
+    }
+
+    private void startAlarm(Calendar calendar) {
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReciever.class);
+        int id = myDb.getId(titel, vaknaam, datum);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, id, intent, 0);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), pendingIntent);
     }
 
     private void SetupRadioButtons() {

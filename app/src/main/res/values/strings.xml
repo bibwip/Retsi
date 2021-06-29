@@ -16,8 +16,20 @@
 
 
     <!---notifications-->
-    <string name="channel_opdrachten" translatable="false">opdrachten</string>
-    <string name="channel_description" translatable="false">Zet dit aan om meldingen te ontvangen voor opdrachten</string>
+    <string name="channel_huiswerk_id" translatable="false">huiswerk_channel</string>
+    <string name="channel_eindopdracht_id" translatable="false">eindopdracht_channel</string>
+    <string name="channel_toets_id" translatable="false">toets_channel</string>
+    <string name="channel_overig_id" translatable="false">overig_channel</string>
+
+    <string name="channel_name_huiswerk">Huiswerk meldingen</string>
+    <string name="channel_name_eindopdracht">Eindopdracht meldingen</string>
+    <string name="channel_name_toets">Toets meldingen</string>
+    <string name="channel_name_overig">Overige opdrachten meldingen</string>
+
+    <string name="channel_description_huiswerk">Zet dit aan om meldingen te ontvangen voor aankomende huiswerk deadlines</string>
+    <string name="channel_description_eindopdracht">Zet dit aan om meldingen te ontvangen voor aankomende eindopdracht deadlines</string>
+    <string name="channel_description_toets">Zet dit aan om meldingen te ontvangen voor aankomende toetsen</string>
+    <string name="channel_description_overig">Zet dit aan om meldingen te ontvangen voor overige deadlines</string>
 
     <!---Assignment strings-->
     <string name="Titel" translatable="false">Titel</string>

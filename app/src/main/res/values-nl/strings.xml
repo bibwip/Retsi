@@ -39,4 +39,12 @@
     <string name="ander">Ander kiezen</string>
     <string name="title_activity_import_opdracht">Import Assignment</string>
     <string name="nothing_to_do">Tekst groen? Niks te doen!</string>
+    <string name="channel_name_huiswerk">Huiswerk meldingen</string>
+    <string name="channel_name_eindopdracht">Eindopdracht meldingen</string>
+    <string name="channel_name_toets">Toets meldingen</string>
+    <string name="channel_name_overig">Overige opdrachten meldingen</string>
+    <string name="channel_description_huiswerk">Zet dit aan om meldingen te ontvangen voor aankomende huiswerk deadlines</string>
+    <string name="channel_description_eindopdracht">Zet dit aan om meldingen te ontvangen voor aankomende eindopdracht deadlines</string>
+    <string name="channel_description_toets">Zet dit aan om meldingen te ontvangen voor aankomende toetsen</string>
+    <string name="channel_description_overig">Zet dit aan om meldingen te ontvangen voor overige deadlines</string>
 </resources>

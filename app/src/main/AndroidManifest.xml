@@ -4,6 +4,7 @@
 
     <application
         android:allowBackup="true"
+        android:name=".Retsi"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -58,6 +59,8 @@
 
         <service android:name=".BigWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
+        <receiver android:name=".AlertReciever" android:process=":remote"/>
     </application>
 
 </manifest>
