@@ -18,7 +18,6 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -68,6 +67,12 @@ public class MainActivity extends BaseActivity{
             Intent intent = new Intent(MainActivity.this, AddAssignmentAcitvity.class);
             startActivity(intent);
         });
+
+        shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.deelText) + apkURl);
+        shareIntent.setType("text/plain");
+
         RecyclerView recyclerView = findViewById(R.id.main_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -199,11 +204,9 @@ public class MainActivity extends BaseActivity{
             }
         }
 
-        shareIntent = new Intent();
-        shareIntent.setAction(Intent.ACTION_SEND);
-        shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.deelText) + apkURl);
-        shareIntent.setType("text/plain");
     }
+
+
 
     public void initViews() {
         chAll = findViewById(R.id.checkbox_all);

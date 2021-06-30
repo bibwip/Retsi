@@ -39,4 +39,8 @@
     <string name="ander">choose other</string>
     <string name="title_activity_import_opdracht">Import Assignment</string>
     <string name="nothing_to_do">Woohoo, Nothing to do!</string>
+    <string name="titel_vb">Title</string>
+    <string name="vak_naam_vb">subject</string>
+    <string name="datum_vb">Date</string>
+    <string name="beschrijving_vb">Description</string>
 </resources>

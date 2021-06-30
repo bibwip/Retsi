@@ -26,6 +26,11 @@
     <string name="datum" translatable="false">Datum</string>
     <string name="beschrijving" translatable="false">Beschrijving</string>
 
+    <string name="titel_vb" translatable="true">Titel</string>
+    <string name="vak_naam_vb" translatable="true">NaamVak</string>
+    <string name="datum_vb" translatable="true">Datum</string>
+    <string name="beschrijving_vb" translatable="true">Beschrijving</string>
+
 
     <!---Other text-->
     <string name="VoegOpdracht">Voeg een opdracht toe</string>
