@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/welcomeFragment"
+    tools:context=".WelcomeFragment"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/tv_welkom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_slab"
+        android:text="@string/welcome"
+        android:textColor="@color/main"
+        android:textSize="30sp"
+        android:layout_marginBottom="100dp"/>
+
+    <Button
+        android:id="@+id/welcomeFragment_welcome_next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/basic_button_background"
+        android:text="next"/>
+
+</LinearLayout>

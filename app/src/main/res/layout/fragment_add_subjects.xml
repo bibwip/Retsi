@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addSubjectsFragment"
+    tools:context=".AddSubjectsFragment"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/tv_voeg_vakken_toe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/roboto_slab"
+        android:text="@string/kies_vakken"
+        android:textColor="@color/standard"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/edtTxt_vaknaam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/edtTxt_vaknaam"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_voeg_vakken_toe"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/standard"
+        android:hint="@string/kies_vak_hint"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_add_vak"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/edtTxt_vaknaam"
+        android:layout_marginTop="8dp"
+        android:layout_toRightOf="@+id/edtTxt_vaknaam"
+        android:backgroundTint="@color/standard"
+        android:fontFamily="@font/roboto_slab"
+        android:text="@string/voeg_vak_knop_tekst"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/edtTxt_vaknaam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edtTxt_vaknaam"
+        app:layout_constraintTop_toTopOf="@+id/edtTxt_vaknaam" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="310dp"
+        android:layout_height="260dp"
+        android:layout_below="@+id/edtTxt_vaknaam"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/stroke_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/Recycler_vakken"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_below="@+id/edtTxt_vaknaam"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="64dp"
+        android:text="@string/lange_zin_startup"
+        app:layout_constraintBottom_toTopOf="@+id/btn_save_startup"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Recycler_vakken" />
+
+    <Button
+        android:id="@+id/btn_save_startup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/basic_button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

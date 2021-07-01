@@ -56,9 +56,10 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        myDb = new DatabaseHelper(this);
         checkFirstRun();
+        setContentView(R.layout.activity_main);
+
+        myDb = new DatabaseHelper(this);
         prefs = getSharedPreferences(getString(R.string.prefs), MODE_PRIVATE);
 
         btnGotoAddAssignment = findViewById(R.id.btn_goto_add_assignment);
@@ -333,11 +334,13 @@ public class MainActivity extends BaseActivity{
         } else if (savedVersionCode == DOESNT_EXIST) {
 
             Intent intent = new Intent(this, StartupActivity.class);
+            finish();
             startActivity(intent);
 
         } else if (currentVersionCode > savedVersionCode) {
 
             Intent intent = new Intent(this, StartupActivity.class);
+            finish();
             startActivity(intent);
         }
 

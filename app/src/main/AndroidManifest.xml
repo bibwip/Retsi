@@ -21,7 +21,9 @@
             android:name=".StartupActivity"
             android:configChanges="locale|orientation"
             android:screenOrientation="userPortrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            <nav-graph android:value="@navigation/nav_graph"/>
+        </activity>
         <activity
             android:name=".AddAssignmentAcitvity"
             android:screenOrientation="userPortrait"

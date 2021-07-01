@@ -9,7 +9,6 @@ import android.net.Uri
 import android.widget.RemoteViews
 
 class BigWidgetProvider : AppWidgetProvider() {
-    val ACTION_REFRESH = "actionrefresh"
 
     override fun onUpdate(context: Context, appWidgetManager: AppWidgetManager, appWidgetIds: IntArray) {
         for (appwidgetId in appWidgetIds) {

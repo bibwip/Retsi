@@ -71,8 +71,7 @@ class BigWidgetService : RemoteViewsService() {
         }
 
         override fun getViewAt(p0: Int): RemoteViews {
-            val views: RemoteViews =
-                RemoteViews(context.packageName, R.layout.widget_opdracht_item)
+            val views = RemoteViews(context.packageName, R.layout.widget_opdracht_item)
             if (items.size > 0) {
                 views.setTextViewText(R.id.widget_item_titel, items[p0].titel)
                 views.setTextViewText(R.id.widget_item_datum, items[p0].datum)

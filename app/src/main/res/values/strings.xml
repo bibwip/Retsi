@@ -78,5 +78,10 @@
         <item>overig_key</item>
     </string-array>
 
+    <string-array name="talen">
+        <item>Nederlands</item>
+        <item>English</item>
+    </string-array>
+
 
 </resources>
