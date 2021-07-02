@@ -10,27 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DaBijhouder">
         <activity
-            android:name=".ImportOpdracht"
-            android:label="@string/title_activity_import_opdracht"
-            android:theme="@style/Theme.DaBijhouder.NoActionBar"
-            android:screenOrientation="userPortrait"/>
-        <activity
-            android:name=".EditOpdrachtActivity"
-            android:screenOrientation="userPortrait" />
-        <activity
-            android:name=".StartupActivity"
-            android:configChanges="locale|orientation"
-            android:screenOrientation="userPortrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-            <nav-graph android:value="@navigation/nav_graph"/>
-        </activity>
-        <activity
-            android:name=".AddAssignmentAcitvity"
-            android:screenOrientation="userPortrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
-        <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".MainActivity"
             android:screenOrientation="userPortrait">
+            <nav-graph android:value="@navigation/nav_graph_main"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

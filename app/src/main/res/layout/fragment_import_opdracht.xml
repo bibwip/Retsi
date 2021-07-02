@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ImportOpdracht"
+    tools:context=".ImportOpdrachtFragment"
     android:id="@+id/importOpFragment"
     android:background="@color/background">
 

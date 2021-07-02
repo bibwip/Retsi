@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/welcomeFragment"
+        android:name="com.retsi.dabijhouder.WelcomeFragment"
+        android:label="fragment_welcome"
+        tools:layout="@layout/fragment_welcome">
+        <action
+            android:id="@+id/action_welcomeFragment_to_chooseLanguageFragment"
+            app:destination="@id/chooseLanguageFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseLanguageFragment"
+        android:name="com.retsi.dabijhouder.ChooseLanguageFragment"
+        android:label="fragment_choose_language"
+        tools:layout="@layout/fragment_choose_language">
+        <action
+            android:id="@+id/action_chooseLanguageFragment_to_addSubjectsFragment"
+            app:destination="@id/addSubjectsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSubjectsFragment"
+        android:name="com.retsi.dabijhouder.AddSubjectsFragment"
+        android:label="fragment_add_subjects"
+        tools:layout="@layout/fragment_add_subjects" >
+        <action
+            android:id="@+id/action_addSubjectsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.retsi.dabijhouder.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_addAssignmentFragment"
+            app:destination="@id/addAssignmentFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_editOpdrachtFragment"
+            app:destination="@id/editOpdrachtFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_importOpdrachtFragment"
+            app:destination="@id/importOpdrachtFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_welcomeFragment"
+            app:destination="@id/welcomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addAssignmentFragment"
+        android:name="com.retsi.dabijhouder.AddAssignmentFragment"
+        android:label="fragment_add_assignment"
+        tools:layout="@layout/fragment_add_assignment" >
+        <action
+            android:id="@+id/action_addAssignmentFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editOpdrachtFragment"
+        android:name="com.retsi.dabijhouder.EditOpdrachtFragment"
+        android:label="fragment_edit_opdracht"
+        tools:layout="@layout/fragment_edit_opdracht" >
+        <action
+            android:id="@+id/action_editOpdrachtFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="ID"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/importOpdrachtFragment"
+        android:name="com.retsi.dabijhouder.ImportOpdrachtFragment"
+        android:label="fragment_import_opdracht"
+        tools:layout="@layout/fragment_import_opdracht">
+        <action
+            android:id="@+id/action_importOpdrachtFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <argument
+            android:name="typeOpdrachtKey"
+            app:argType="string" />
+        <argument
+            android:name="titel"
+            app:argType="string" />
+        <argument
+            android:name="vakNaam"
+            app:argType="string" />
+        <argument
+            android:name="datum"
+            app:argType="string" />
+        <argument
+            android:name="beschrijving"
+            app:argType="string" />
+    </fragment>
+</navigation>

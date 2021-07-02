@@ -25,6 +25,7 @@
     <EditText
         android:id="@+id/edtTxt_vaknaam"
         android:layout_width="250dp"
+        android:singleLine="true"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_voeg_vakken_toe"
         android:layout_marginStart="8dp"

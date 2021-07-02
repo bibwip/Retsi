@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import kotlinx.android.synthetic.main.fragment_choose_language.*
 import java.util.*
 
-class ChooseLanguageFragment : Fragment(R.layout.fragment_choose_language) {
+class ChooseLanguageFragment : NoToolBarFragment(R.layout.fragment_choose_language) {
 
     var PREFS_NAME = "MyPrefsFile"
     var LANGUAGE_KEY = "language"
