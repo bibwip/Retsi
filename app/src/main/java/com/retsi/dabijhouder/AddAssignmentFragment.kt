@@ -1,5 +1,6 @@
 package com.retsi.dabijhouder
 
+import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.DatePicker.OnDateChangedListener
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_add_assignment.*
 import java.util.*
 

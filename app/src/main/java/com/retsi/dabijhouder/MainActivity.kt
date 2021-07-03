@@ -14,7 +14,6 @@ import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.flask.colorpicker.BuildConfig
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_welcome.*
 
 class MainActivity : BaseActivity() {
 
@@ -94,10 +93,12 @@ class MainActivity : BaseActivity() {
             "https://drive.google.com/drive/folders/1lVLj9Ucl-RdRX9ABggtomy_8Hi8nsf1y?usp=sharing"
         const val PREF_VERSION_CODE_KEY = "version_code"
         const val DOESNT_EXIST = -1
+
+        val noBackDestinations = arrayOf(R.id.addAssignmentFragment, R.id.importOpdrachtFragment)
     }
 
     override fun onBackPressed() {
-        if (navController.currentDestination!!.id != R.id.welcomeFragment) {
+        if (navController.currentDestination!!.id != R.id.welcomeFragment && noBackDestinations.contains(navController.currentBackStackEntry?.destination?.id)) {
             super.onBackPressed()
         }
     }
