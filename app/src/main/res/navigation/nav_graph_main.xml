@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/welcomeFragment"
         android:name="com.retsi.dabijhouder.WelcomeFragment"
-        android:label="fragment_welcome"
+        android:label="@string/welcome"
         tools:layout="@layout/fragment_welcome">
         <action
             android:id="@+id/action_welcomeFragment_to_chooseLanguageFragment"
@@ -21,7 +21,7 @@
     <fragment
         android:id="@+id/chooseLanguageFragment"
         android:name="com.retsi.dabijhouder.ChooseLanguageFragment"
-        android:label="fragment_choose_language"
+        android:label="kaas"
         tools:layout="@layout/fragment_choose_language">
         <action
             android:id="@+id/action_chooseLanguageFragment_to_addSubjectsFragment"
@@ -34,8 +34,8 @@
     <fragment
         android:id="@+id/addSubjectsFragment"
         android:name="com.retsi.dabijhouder.AddSubjectsFragment"
-        android:label="fragment_add_subjects"
-        tools:layout="@layout/fragment_add_subjects" >
+        android:label="Dit hoor je niet te zien"
+        tools:layout="@layout/fragment_add_subjects">
         <action
             android:id="@+id/action_addSubjectsFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -43,8 +43,8 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.retsi.dabijhouder.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        android:label="Retsi"
+        tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_addAssignmentFragment"
             app:destination="@id/addAssignmentFragment" />
@@ -70,8 +70,8 @@
     <fragment
         android:id="@+id/editOpdrachtFragment"
         android:name="com.retsi.dabijhouder.EditOpdrachtFragment"
-        android:label="fragment_edit_opdracht"
-        tools:layout="@layout/fragment_edit_opdracht" >
+        android:label="@string/bewerk"
+        tools:layout="@layout/fragment_edit_opdracht">
         <action
             android:id="@+id/action_editOpdrachtFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -82,7 +82,7 @@
     <fragment
         android:id="@+id/importOpdrachtFragment"
         android:name="com.retsi.dabijhouder.ImportOpdrachtFragment"
-        android:label="fragment_import_opdracht"
+        android:label="Import"
         tools:layout="@layout/fragment_import_opdracht">
         <action
             android:id="@+id/action_importOpdrachtFragment_to_mainFragment"
@@ -106,7 +106,7 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.retsi.dabijhouder.SettingsFragment"
-        android:label="SettingsFragment" >
+        android:label="@string/instellingen">
         <action
             android:id="@+id/action_settingsFragment_to_addSubjectsFragment"
             app:destination="@id/addSubjectsFragment" />
