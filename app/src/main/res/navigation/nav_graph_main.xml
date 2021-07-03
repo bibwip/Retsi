@@ -103,4 +103,12 @@
             android:name="beschrijving"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.retsi.dabijhouder.SettingsFragment"
+        android:label="SettingsFragment" >
+        <action
+            android:id="@+id/action_settingsFragment_to_addSubjectsFragment"
+            app:destination="@id/addSubjectsFragment" />
+    </fragment>
 </navigation>

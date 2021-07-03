@@ -59,15 +59,12 @@ class MainActivity : BaseActivity() {
     @SuppressLint("NonConstantResourceId")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> {
-                item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
-            }
             R.id.action_share -> {
                 val sendIntent = Intent.createChooser(shareIntent, null)
                 startActivity(sendIntent)
                 true
             }
-            else -> super.onOptionsItemSelected(item)
+            else -> item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
         }
     }
 
