@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/action_share_opdracht"
-        android:title="@string/deel"/>
-
-
+        android:title="@string/deel"
+        app:showAsAction="withText"
+        android:icon="@drawable/ic_share"/>
 </menu>

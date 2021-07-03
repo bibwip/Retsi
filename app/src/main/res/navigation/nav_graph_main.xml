@@ -38,7 +38,11 @@
         tools:layout="@layout/fragment_add_subjects">
         <action
             android:id="@+id/action_addSubjectsFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@anim/slide_out_bottom"
+            app:popEnterAnim="@anim/slide_in_bottom"
+            app:popExitAnim="@anim/slide_out_top" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
@@ -47,10 +51,18 @@
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_addAssignmentFragment"
-            app:destination="@id/addAssignmentFragment" />
+            app:destination="@id/addAssignmentFragment"
+            app:enterAnim="@anim/scale_out_right_bottom"
+            app:exitAnim="@anim/semi_fade_out"
+            app:popEnterAnim="@anim/semi_fade_in"
+            app:popExitAnim="@anim/scale_in_right_bottom" />
         <action
             android:id="@+id/action_mainFragment_to_editOpdrachtFragment"
-            app:destination="@id/editOpdrachtFragment" />
+            app:destination="@id/editOpdrachtFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_mainFragment_to_importOpdrachtFragment"
             app:destination="@id/importOpdrachtFragment" />
@@ -65,7 +77,11 @@
         tools:layout="@layout/fragment_add_assignment" >
         <action
             android:id="@+id/action_addAssignmentFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:enterAnim="@anim/semi_fade_in"
+            app:exitAnim="@anim/scale_in_right_bottom"
+            app:popEnterAnim="@anim/scale_out_right_bottom"
+            app:popExitAnim="@anim/semi_fade_out" />
     </fragment>
     <fragment
         android:id="@+id/editOpdrachtFragment"
@@ -74,7 +90,11 @@
         tools:layout="@layout/fragment_edit_opdracht">
         <action
             android:id="@+id/action_editOpdrachtFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@android:anim/fade_out" />
         <argument
             android:name="ID"
             app:argType="integer" />
@@ -86,7 +106,9 @@
         tools:layout="@layout/fragment_import_opdracht">
         <action
             android:id="@+id/action_importOpdrachtFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            app:destination="@id/mainFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@anim/slide_out_left" />
         <argument
             android:name="typeOpdrachtKey"
             app:argType="string" />
@@ -109,6 +131,10 @@
         android:label="@string/instellingen">
         <action
             android:id="@+id/action_settingsFragment_to_addSubjectsFragment"
-            app:destination="@id/addSubjectsFragment" />
+            app:destination="@id/addSubjectsFragment"
+            app:enterAnim="@anim/slide_in_bottom"
+            app:exitAnim="@anim/slide_out_top"
+            app:popEnterAnim="@anim/slide_in_top"
+            app:popExitAnim="@anim/slide_out_bottom" />
     </fragment>
 </navigation>

@@ -286,7 +286,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     override fun onPause() {
         super.onPause()
-        if (opdrachtbackup != null){
+        if (opdrachtbackup != null && clicked){
             myDb!!.deleteOpdracht(
                 opdrachtbackup!!.vakNaam,
                 opdrachtbackup!!.titel)
