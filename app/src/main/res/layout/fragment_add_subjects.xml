@@ -17,45 +17,46 @@
         android:text="@string/kies_vakken"
         android:textColor="@color/standard"
         android:textSize="25sp"
-        app:layout_constraintBottom_toTopOf="@+id/edtTxt_vaknaam"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edtTxt_vaknaam"
-        android:layout_width="250dp"
-        android:singleLine="true"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tv_voeg_vakken_toe"
-        android:layout_marginStart="8dp"
         android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/standard"
-        android:hint="@string/kies_vak_hint"
-        app:layout_constraintBottom_toTopOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView3">
 
-    <Button
-        android:id="@+id/btn_add_vak"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@id/edtTxt_vaknaam"
-        android:layout_marginTop="8dp"
-        android:layout_toRightOf="@+id/edtTxt_vaknaam"
-        android:backgroundTint="@color/standard"
-        android:fontFamily="@font/roboto_slab"
-        android:text="@string/voeg_vak_knop_tekst"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/edtTxt_vaknaam"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/edtTxt_vaknaam"
-        app:layout_constraintTop_toTopOf="@+id/edtTxt_vaknaam" />
+        <EditText
+            android:id="@+id/edtTxt_vaknaam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:backgroundTint="@color/standard"
+            android:hint="@string/kies_vak_hint"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/btn_add_vak"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/standard"
+            android:fontFamily="@font/roboto_slab"
+            android:text="@string/voeg_vak_knop_tekst"
+            android:textAllCaps="false" />
+
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="310dp"
         android:layout_height="260dp"
-        android:layout_below="@+id/edtTxt_vaknaam"
         android:layout_centerHorizontal="true"
         android:src="@drawable/stroke_bg"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +69,6 @@
         android:id="@+id/Recycler_vakken"
         android:layout_width="300dp"
         android:layout_height="250dp"
-        android:layout_below="@+id/edtTxt_vaknaam"
         android:layout_centerHorizontal="true"
         app:layout_constraintBottom_toBottomOf="@+id/imageView3"
         app:layout_constraintEnd_toEndOf="@+id/imageView3"
@@ -79,9 +79,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="64dp"
         android:text="@string/lange_zin_startup"
-        app:layout_constraintBottom_toTopOf="@+id/btn_save_startup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Recycler_vakken" />

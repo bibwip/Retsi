@@ -3,6 +3,7 @@
     android:minHeight="110dp"
     android:minWidth="310dp"
     android:minResizeHeight="40dp"
-    android:resizeMode="vertical"
+    android:minResizeWidth="40dp"
+    android:resizeMode="vertical |horizontal"
     android:updatePeriodMillis="3600000"
     android:widgetCategory="home_screen"/>

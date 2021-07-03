@@ -38,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image______________">
@@ -55,7 +56,7 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/vak"
                 android:textColor="@color/standard"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -64,16 +65,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_edit_vak"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintEnd_toEndOf="@+id/editOpTypeopdracht"
+                app:layout_constraintStart_toStartOf="@+id/editOpTypeopdracht"
                 app:layout_constraintTop_toTopOf="@+id/tv_edit_vak">
 
                 <Spinner
                     android:id="@+id/editOpVakSpinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
                     android:background="@drawable/spinnerbackground"
                     android:dropDownWidth="wrap_content"
                     android:gravity="center"
@@ -97,7 +96,7 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/type_opdracht"
                 android:textColor="@color/standard"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -107,7 +106,8 @@
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="18dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_edit_type"
-                app:layout_constraintStart_toStartOf="@+id/relativeLayout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/tv_edit_type" />
 
             <androidx.constraintlayout.widget.Guideline
@@ -134,18 +134,18 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/titel_vb"
                 android:textColor="@color/standard"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view2" />
 
             <EditText
                 android:id="@+id/editOpTitel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="180dp"
+                android:layout_height="44dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_edit_titel"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/editOpBeschrijving"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
                 app:layout_constraintTop_toTopOf="@+id/tv_edit_titel" />
 
@@ -164,14 +164,14 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/beschrijving_vb"
                 android:textColor="@color/standard"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view3" />
 
             <EditText
                 android:id="@+id/editOpBeschrijving"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="180dp"
+                android:layout_height="44dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 app:layout_constraintBottom_toBottomOf="@+id/textView6"
@@ -194,7 +194,7 @@
                 android:fontFamily="@font/roboto_slab"
                 android:text="@string/datum_vb"
                 android:textColor="@color/standard"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view4" />
 
@@ -232,16 +232,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/editOpSave"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image______________" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/editOpSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/save"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -271,7 +272,7 @@
     <!--            android:fontFamily="@font/roboto_slab"-->
     <!--            android:text="@string/vak"-->
     <!--            android:textColor="@color/standard"-->
-    <!--            android:textSize="20sp"-->
+    <!--            android:textSize="16sp"-->
     <!--            app:layout_constraintEnd_toStartOf="@+id/guideline4"-->
     <!--            app:layout_constraintStart_toStartOf="parent"-->
     <!--            app:layout_constraintTop_toBottomOf="@+id/image______________" />-->
@@ -284,7 +285,7 @@
     <!--            android:fontFamily="@font/roboto_slab"-->
     <!--            android:text="@string/TypeOpdracht"-->
     <!--            android:textColor="@color/standard"-->
-    <!--            android:textSize="20sp"-->
+    <!--            android:textSize="16sp"-->
     <!--            app:layout_constraintEnd_toEndOf="parent"-->
     <!--            app:layout_constraintStart_toStartOf="@+id/guideline4"-->
     <!--            app:layout_constraintTop_toBottomOf="@+id/image______________" />-->
@@ -309,7 +310,7 @@
     <!--            android:fontFamily="@font/roboto_slab"-->
     <!--            android:text="@string/Titel"-->
     <!--            android:textColor="@color/standard"-->
-    <!--            android:textSize="20sp"-->
+    <!--            android:textSize="16sp"-->
     <!--            app:layout_constraintEnd_toEndOf="parent"-->
     <!--            app:layout_constraintStart_toStartOf="parent"-->
     <!--            app:layout_constraintTop_toBottomOf="@+id/image_______________" />-->
@@ -322,7 +323,7 @@
     <!--            android:fontFamily="@font/roboto_slab"-->
     <!--            android:text="@string/beschrijving"-->
     <!--            android:textColor="@color/standard"-->
-    <!--            android:textSize="20sp"-->
+    <!--            android:textSize="16sp"-->
     <!--            app:layout_constraintEnd_toEndOf="@+id/editOpTitel"-->
     <!--            app:layout_constraintStart_toStartOf="@+id/editOpTitel"-->
     <!--            app:layout_constraintTop_toBottomOf="@+id/editOpTitel" />-->
@@ -335,7 +336,7 @@
     <!--            android:fontFamily="@font/roboto_slab"-->
     <!--            android:text="@string/datum"-->
     <!--            android:textColor="@color/standard"-->
-    <!--            android:textSize="20sp"-->
+    <!--            android:textSize="16sp"-->
     <!--            app:layout_constraintEnd_toEndOf="parent"-->
     <!--            app:layout_constraintStart_toStartOf="parent"-->
     <!--            app:layout_constraintTop_toBottomOf="@+id/editOpBeschrijving" />-->
