@@ -25,6 +25,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private var chosenFilters = ArrayList<String>()
     var opdrachtbackup: OpdrachtItem? = null
     var clicked = false
+    private val toBeDeleted = ArrayList<Int>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,6 +54,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         mAdapter!!.setClickListener { v, position ->
             if (v.id == R.id.img_btn_check_opdracht) {
+                if (opdrachtbackup != null) {
+                    toBeDeleted.add(opdrachtbackup!!.id)
+                }
                 opdrachtbackup = mAdapter!!.getItem(position)
                 val snackbar = Snackbar.make(
                     coordinatorLayoutForMain,
@@ -61,6 +65,8 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 snackbar.setAction(android.R.string.cancel) {
                     clicked = true
                     mAdapter!!.InsertItem(opdrachtbackup, position)
+                    toBeDeleted.remove(opdrachtbackup!!.id)
+                    opdrachtbackup = null
                 }
                 snackbar.addCallback(object : Snackbar.Callback() {
                     override fun onDismissed(transientBottomBar: Snackbar, event: Int) {
@@ -68,13 +74,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                         if (clicked) {
                             clicked = false
                         } else {
-                            myDb!!.deleteOpdracht(
-                                opdrachtbackup!!.vakNaam,
-                                opdrachtbackup!!.titel
-                            )
-                            val updateWidgetIntent = Intent()
-                            updateWidgetIntent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-                            requireActivity().sendBroadcast(updateWidgetIntent)
+                            toBeDeleted.add(opdrachtbackup!!.id)
                         }
                     }
                 })
@@ -96,8 +96,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 when (menuItem.itemId) {
                     R.id.action_edit_opdracht -> {
                         val item: OpdrachtItem = mAdapter!!.getItem(position)
-                        val action = MainFragmentDirections.actionMainFragmentToEditOpdrachtFragment(
-                            myDb!!.getId(item.titel, item.vakNaam, item.datum))
+                        val action = MainFragmentDirections.actionMainFragmentToEditOpdrachtFragment(item.id)
                         view.findNavController().navigate(action)
                         true
                     }
@@ -185,6 +184,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 val datum = res.getString(4)
                 val bescrhijving = res.getString(5)
                 val typeKey = res.getString(1)
+                val itemId = res.getInt(0)
                 when (typeOpdracht) {
                     "Toets_key" -> typeOpdracht = getString(R.string.Toets)
                     "eindopdracht_key" -> typeOpdracht = getString(R.string.Eindopdracht)
@@ -196,11 +196,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 val sList = datum.split("-").toTypedArray()
                 val datumKey = (sList[2] + sList[1] + sList[0]).toInt()
                 val opdracht =
-                    OpdrachtItem(typeOpdracht, vak, titel, datum, bescrhijving, datumKey, typeKey)
+                    OpdrachtItem(itemId, typeOpdracht, vak, titel, datum, bescrhijving, datumKey,
+                        typeKey)
                 items.add(opdracht)
             }
         }
-        items.sortWith { opdrachtItem, t1 -> opdrachtItem.datumTagSorter.compareTo(t1.datumTagSorter) }
+        items.sortWith { opdrachtItem, t1 -> opdrachtItem.datumTagSorter!!.compareTo(t1.datumTagSorter!!) }
         return items
     }
 
@@ -286,10 +287,13 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
     override fun onPause() {
         super.onPause()
-        if (opdrachtbackup != null && clicked){
-            myDb!!.deleteOpdracht(
-                opdrachtbackup!!.vakNaam,
-                opdrachtbackup!!.titel)
+        if (toBeDeleted.isNotEmpty()){
+            for (id in toBeDeleted){
+                myDb!!.deleteOpdracht(id)
+            }
+            val updateWidgetIntent = Intent()
+            updateWidgetIntent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
+            requireActivity().sendBroadcast(updateWidgetIntent)
         }
     }
 }

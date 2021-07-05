@@ -141,28 +141,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else return "#FAECE2";
     }
 
-    public void deleteOpdracht(String vak, String titel) {
+    public void deleteOpdracht(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_NAME,"VAK=? and TITEL=?",new String[]{vak,titel});
-    }
-
-    public int getId(String titel, String vak, String datum) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor c = db.rawQuery("select * from " +
-                        TABLE_NAME + " where " + COL_4 + " = ? AND " + COL_3 +
-                        " = ? AND  " + COL_5 + " = ?",
-                new String[] { titel, vak, datum});
-        c.moveToNext();
-        return c.getInt(c.getColumnIndex(COL_1));
+        db.execSQL("delete from "+TABLE_NAME+" where "+COL1_ID+"='"+id+"'");
     }
 
     public OpdrachtItem getOpdracht(int ID) {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE ID = '"+ID+"'", null);
         c.moveToNext();
-        OpdrachtItem item = new OpdrachtItem(c.getString(c.getColumnIndex(COL_2)),
+        OpdrachtItem item = new OpdrachtItem(c.getInt(c.getColumnIndex(COL_1)),
+                c.getString(c.getColumnIndex(COL_2)),
                 c.getString(c.getColumnIndex(COL_3)), c.getString(c.getColumnIndex(COL_4)),
-                c.getString(c.getColumnIndex(COL_5)), c.getString(c.getColumnIndex(COL_6)));
+                c.getString(c.getColumnIndex(COL_5)), c.getString(c.getColumnIndex(COL_6)),
+                null, null);
         return item;
     }
 

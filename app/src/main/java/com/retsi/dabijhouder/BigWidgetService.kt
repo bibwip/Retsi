@@ -32,6 +32,7 @@ class BigWidgetService : RemoteViewsService() {
             val res: Cursor = db.allData
 
             while (res.moveToNext()) {
+                val id = res.getInt(0)
                 var typeOpdracht = res.getString(1)
                 val vak = res.getString(2)
                 val titel = res.getString(3)
@@ -48,18 +49,14 @@ class BigWidgetService : RemoteViewsService() {
 
                 val sList = datum.split("-").toTypedArray()
                 val datumKey = (sList[2] + sList[1] + sList[0]).toInt()
-                val opdracht = OpdrachtItem(typeOpdracht, vak, titel, datum, bescrhijving, datumKey,
+                val opdracht = OpdrachtItem(id, typeOpdracht, vak, titel, datum, bescrhijving, datumKey,
                     typeKey)
 
                 items.add(opdracht)
             }
 
 
-            Collections.sort(items, object : Comparator<OpdrachtItem> {
-                override fun compare(opdrachtItem: OpdrachtItem, t1: OpdrachtItem): Int {
-                    return opdrachtItem.datumTagSorter.compareTo(t1.datumTagSorter)
-                }
-            })
+            items.sortWith { opdrachtItem, t1 -> opdrachtItem.datumTagSorter!!.compareTo(t1.datumTagSorter!!) }
         }
 
         override fun onDestroy() {
