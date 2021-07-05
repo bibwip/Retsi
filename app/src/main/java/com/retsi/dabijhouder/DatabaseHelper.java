@@ -22,26 +22,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4 = "TITEL";
     public static final String COL_5 = "DATUM";
     public static final String COL_6 = "BESCHRIJVING";
+    public static final String COL_7 = "BELANGRIJK";
 
     public static final String TABLE_NAME1 = "vakken_tabel";
     public static final String COL1_ID = "ID";
     public static final String COL2_VAKKEN = "VAK";
     public static final String COL3_KLEUR = "KLEUR";
 
+    private ArrayList<ContentValues> table1data = new ArrayList<>();
+    private ArrayList<ContentValues> table2data = new ArrayList<>();
+    private boolean updated = false;
 
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " ("+COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+COL_2+" TEXT, "+COL_3+" TEXT, "+COL_4+" TEXT, "+COL_5+" TEXT, "+COL_6+" TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " ("+COL_1+" INTEGER PRIMARY KEY AUTOINCREMENT, "+COL_2+" TEXT, "+COL_3+" TEXT, "+COL_4+" TEXT, "+COL_5+" TEXT, "+COL_6+" TEXT, "+COL_7+" BOOLEAN)");
         db.execSQL("create table " + TABLE_NAME1 + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, VAK TEXT, KLEUR TEXT)");
+
+        if (updated){
+            for (ContentValues data : table1data) {
+                db.insert(TABLE_NAME, null, data);
+            }
+            for (ContentValues data : table2data) {
+                db.insert(TABLE_NAME1, null, data);
+            }
+        }
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion < newVersion && oldVersion != 0){
+            Cursor res = db.rawQuery("select * from "+TABLE_NAME, null);
+            while (res.moveToNext()){
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(COL_2, res.getString(res.getColumnIndex(COL_2)));
+                contentValues.put(COL_3, res.getString(res.getColumnIndex(COL_3)));
+                contentValues.put(COL_4, res.getString(res.getColumnIndex(COL_4)));
+                contentValues.put(COL_5, res.getString(res.getColumnIndex(COL_5)));
+                contentValues.put(COL_6, res.getString(res.getColumnIndex(COL_6)));
+                contentValues.put(COL_7, 0);
+                table1data.add(contentValues);
+            }
+
+            Cursor res2 = db.rawQuery("select * from "+TABLE_NAME1, null);
+            while (res2.moveToNext()){
+                ContentValues contentValues2 = new ContentValues();
+                contentValues2.put(COL2_VAKKEN, res2.getString(res2.getColumnIndex(COL2_VAKKEN)));
+                contentValues2.put(COL3_KLEUR, res2.getString(res2.getColumnIndex(COL3_KLEUR)));
+                table2data.add(contentValues2);
+            }
+
+            updated = true;
+        }
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME1);
         onCreate(db);
