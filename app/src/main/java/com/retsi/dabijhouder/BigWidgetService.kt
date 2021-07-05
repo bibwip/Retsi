@@ -39,6 +39,7 @@ class BigWidgetService : RemoteViewsService() {
                 val datum = res.getString(4)
                 val bescrhijving = res.getString(5)
                 val typeKey = res.getString(1)
+                var belangrijk = res.getInt(6)
 
                 when (typeOpdracht) {
                     "Toets_key" -> typeOpdracht = context.getString(R.string.Toets)
@@ -49,7 +50,7 @@ class BigWidgetService : RemoteViewsService() {
 
                 val sList = datum.split("-").toTypedArray()
                 val datumKey = (sList[2] + sList[1] + sList[0]).toInt()
-                val opdracht = OpdrachtItem(id, typeOpdracht, vak, titel, datum, bescrhijving, datumKey,
+                val opdracht = OpdrachtItem(id, typeOpdracht, vak, titel, datum, bescrhijving, belangrijk, datumKey,
                     typeKey)
 
                 items.add(opdracht)

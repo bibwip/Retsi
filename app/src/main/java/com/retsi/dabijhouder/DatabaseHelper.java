@@ -102,6 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_4,titel);
         contentValues.put(COL_5,Datum);
         contentValues.put(COL_6,beschrijving);
+        contentValues.put(COL_7, 0);
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1) {
             return false;
@@ -190,8 +191,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 c.getString(c.getColumnIndex(COL_2)),
                 c.getString(c.getColumnIndex(COL_3)), c.getString(c.getColumnIndex(COL_4)),
                 c.getString(c.getColumnIndex(COL_5)), c.getString(c.getColumnIndex(COL_6)),
+                c.getInt(c.getColumnIndex(COL_7)),
                 null, null);
         return item;
+    }
+
+    public void SetBelangerijk(int id, int waarde){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_7, waarde);
+        db.update(TABLE_NAME, contentValues, "ID = '"+id+"'",new String[] {});
     }
 
 

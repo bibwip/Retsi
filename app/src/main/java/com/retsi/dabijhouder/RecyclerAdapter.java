@@ -1,11 +1,14 @@
 package com.retsi.dabijhouder;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.graphics.Color;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
     private ItemClickListener mClickListener;
     private LongItemClickListener mLongItemClickListener;
     private DatabaseHelper myDb;
+    private Context context;
 
     public interface ItemClickListener {
         void onItemClick(View v, int position);
@@ -30,9 +34,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
         void onItemLongClick(View v, int position);
     }
 
-    public RecyclerAdapter(ArrayList<OpdrachtItem> opdrachtItems, DatabaseHelper myDb) {
+    public RecyclerAdapter(ArrayList<OpdrachtItem> opdrachtItems, DatabaseHelper myDb, Context context) {
         mOpdrachtItems = opdrachtItems;
         this.myDb = myDb;
+        this.context = context;
     }
 
     public OpdrachtItem getItem(int position) {
@@ -74,6 +79,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
         holder.datum.setText(currentItem.getDatum());
         holder.beschrijving.setText(currentItem.getBeschrijving());
         holder.tv_vak_kleur.setBackgroundColor(Color.parseColor(myDb.getVakKleur(currentItem.getVakNaam())));
+        if (currentItem.getBelangerijk() == 1){
+            holder.img_star.setVisibility(View.VISIBLE);
+        } else holder.img_star.setVisibility(View.INVISIBLE);
 
         if (mOpdrachtItems.get(position).isExpanded()){
             TransitionManager.beginDelayedTransition(holder.parent);
@@ -102,6 +110,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
         private RelativeLayout expandedRelLayout;
         private CardView parent;
         private ImageButton check_button;
+        private ImageView img_star;
 
         public OpdrachtViewHolder(@NonNull View itemView, ItemClickListener listener,
                                   LongItemClickListener longListener) {
@@ -115,6 +124,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
             expandedRelLayout = itemView.findViewById(R.id.expandedRelLayout);
             tv_vak_kleur = itemView.findViewById(R.id.tv_opdracht_item_kleur);
             check_button = itemView.findViewById(R.id.img_btn_check_opdracht);
+            img_star = itemView.findViewById(R.id.opdrachtImgStar);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

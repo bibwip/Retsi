@@ -17,10 +17,11 @@ import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     
-    var myDb: DatabaseHelper? = null
+    private var myDb: DatabaseHelper? = null
     private var mAdapter: RecyclerAdapter? = null
     private var chosenFilters = ArrayList<String>()
     var opdrachtbackup: OpdrachtItem? = null
@@ -43,7 +44,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val recyclerView: RecyclerView = main_recycler_view
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
-        mAdapter = RecyclerAdapter(setData(), myDb)
+        mAdapter = RecyclerAdapter(setData(), myDb, this.context)
         recyclerView.adapter = mAdapter
 
         if (requireActivity().intent.hasExtra("refresh")) {
@@ -93,9 +94,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             val popup = PopupMenu(context, v)
             popup.menuInflater.inflate(R.menu.opdracht_menu, popup.menu)
             popup.setOnMenuItemClickListener { menuItem ->
+                val item: OpdrachtItem = mAdapter!!.getItem(position)
                 when (menuItem.itemId) {
                     R.id.action_edit_opdracht -> {
-                        val item: OpdrachtItem = mAdapter!!.getItem(position)
                         val action = MainFragmentDirections.actionMainFragmentToEditOpdrachtFragment(item.id)
                         view.findNavController().navigate(action)
                         true
@@ -131,6 +132,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                             .putExtra(Intent.EXTRA_TEXT, url).type = "text/plain"
                         val sendIntent = Intent.createChooser(shareItem, null)
                         startActivity(sendIntent)
+                        true
+                    }
+                    R.id.menu_action_set_priority -> {
+                        if (item.belangerijk == 1){
+                            myDb!!.SetBelangerijk(item.id, 0)
+                        } else{
+                            myDb!!.SetBelangerijk(item.id, 1)
+                        }
+                        mAdapter!!.UpdateItems(setData())
                         true
                     }
                     else -> true
@@ -185,6 +195,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 val bescrhijving = res.getString(5)
                 val typeKey = res.getString(1)
                 val itemId = res.getInt(0)
+                val belangerijk = res.getInt(6)
                 when (typeOpdracht) {
                     "Toets_key" -> typeOpdracht = getString(R.string.Toets)
                     "eindopdracht_key" -> typeOpdracht = getString(R.string.Eindopdracht)
@@ -196,12 +207,19 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 val sList = datum.split("-").toTypedArray()
                 val datumKey = (sList[2] + sList[1] + sList[0]).toInt()
                 val opdracht =
-                    OpdrachtItem(itemId, typeOpdracht, vak, titel, datum, bescrhijving, datumKey,
+                    OpdrachtItem(itemId, typeOpdracht, vak, titel, datum, bescrhijving, belangerijk, datumKey,
                         typeKey)
                 items.add(opdracht)
             }
         }
-        items.sortWith { opdrachtItem, t1 -> opdrachtItem.datumTagSorter!!.compareTo(t1.datumTagSorter!!) }
+        items.sortWith {opdrachtItem, t1 -> t1.belangerijk.compareTo(opdrachtItem.belangerijk)}
+        items.sortWith { opdrachtItem, t1 ->
+            if(opdrachtItem.belangerijk == t1.belangerijk){
+                opdrachtItem.datumTagSorter!!.compareTo(t1.datumTagSorter!!)
+            } else {
+                0
+            }
+        }
         return items
     }
 
@@ -297,3 +315,4 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 }
+

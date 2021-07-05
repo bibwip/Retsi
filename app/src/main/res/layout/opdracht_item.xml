@@ -111,6 +111,15 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/roundcornerforbutton"/>
 
+        <ImageView
+            android:id="@+id/opdrachtImgStar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_star"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/img_btn_check_opdracht"
+            android:layout_marginEnd="16dp" />
+
 
     </RelativeLayout>
 

@@ -8,6 +8,11 @@
         app:showAsAction="withText"/>
 
     <item
+        android:id="@+id/menu_action_set_priority"
+        android:title="maak belangrijk"/>
+<!--TODO tekstt hier voor maken    -->
+
+    <item
         android:id="@+id/action_share_opdracht"
         android:title="@string/deel"
         app:showAsAction="withText"
