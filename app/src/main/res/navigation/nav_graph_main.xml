@@ -53,8 +53,8 @@
             android:id="@+id/action_mainFragment_to_addAssignmentFragment"
             app:destination="@id/addAssignmentFragment"
             app:enterAnim="@anim/scale_out_right_bottom"
-            app:exitAnim="@anim/semi_fade_out"
-            app:popEnterAnim="@anim/semi_fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@anim/scale_in_right_bottom" />
         <action
             android:id="@+id/action_mainFragment_to_editOpdrachtFragment"
