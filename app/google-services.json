@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "277901330113",
+    "project_id": "retsi-f7818",
+    "storage_bucket": "retsi-f7818.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:277901330113:android:8d3a7a5fd085a62c533640",
+        "android_client_info": {
+          "package_name": "com.retsi.dabijhouder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "277901330113-9va9cv08cd5vtnftegfbn5a12g47n1gf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDY6tGpywCUhVOrmq1kntNB3c3iK1d4_g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "277901330113-9va9cv08cd5vtnftegfbn5a12g47n1gf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

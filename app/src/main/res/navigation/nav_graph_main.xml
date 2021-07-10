@@ -24,12 +24,8 @@
         android:label="kaas"
         tools:layout="@layout/fragment_choose_language">
         <action
-            android:id="@+id/action_chooseLanguageFragment_to_addSubjectsFragment"
-            app:destination="@id/addSubjectsFragment"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
+            android:id="@+id/action_chooseLanguageFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/addSubjectsFragment"
@@ -136,5 +132,29 @@
             app:exitAnim="@anim/slide_out_top"
             app:popEnterAnim="@anim/slide_in_top"
             app:popExitAnim="@anim/slide_out_bottom" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.retsi.dabijhouder.LoginFragment"
+        android:label="fragment_login_user"
+        tools:layout="@layout/fragment_login_user" >
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_addSubjectsFragment"
+            app:destination="@id/addSubjectsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.retsi.dabijhouder.RegisterFragment"
+        android:label="fragment_register_user"
+        tools:layout="@layout/fragment_register_user" >
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_addSubjectsFragment"
+            app:destination="@id/addSubjectsFragment" />
     </fragment>
 </navigation>

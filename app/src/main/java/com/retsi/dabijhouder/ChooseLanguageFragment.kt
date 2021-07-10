@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_choose_language.*
 import java.util.*
 
@@ -23,8 +24,8 @@ class ChooseLanguageFragment : NoToolBarFragment(R.layout.fragment_choose_langua
             if (spinner_talen.selectedItem.toString() == getString(R.string.nederlands)) SaveLanguage("nl")
             else if (spinner_talen.selectedItem.toString() == getString(R.string.engels)) SaveLanguage("en")
 
-            val action = ChooseLanguageFragmentDirections.actionChooseLanguageFragmentToAddSubjectsFragment()
-            view.findNavController().navigate(action)
+            val action = ChooseLanguageFragmentDirections.actionChooseLanguageFragmentToLoginFragment()
+            findNavController().navigate(action)
         }
     }
 

@@ -43,4 +43,10 @@
     <string name="vak_naam_vb">subject</string>
     <string name="datum_vb">Date</string>
     <string name="beschrijving_vb">Description</string>
+    <string name="create_account">Create Account</string>
+    <string name="wachtwoord">Password</string>
+    <string name="naam">Name</string>
+    <string name="Heeft_al_account">I already have an account</string>
+    <string name="door_zonder_login">Continue without account</string>
+    <string name="heeft_nog_geen_account">I don\'t have an account</string>
 </resources>

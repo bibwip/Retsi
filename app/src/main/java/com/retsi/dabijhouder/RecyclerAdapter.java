@@ -1,6 +1,5 @@
 package com.retsi.dabijhouder;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.graphics.Color;
 import android.transition.TransitionManager;

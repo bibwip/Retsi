@@ -43,4 +43,10 @@
     <string name="vak_naam_vb">NaamVak</string>
     <string name="datum_vb">Datum</string>
     <string name="beschrijving_vb">Beschrijving</string>
+    <string name="create_account">Registreren</string>
+    <string name="wachtwoord">Wachtwoord</string>
+    <string name="naam">Naam</string>
+    <string name="Heeft_al_account">Ik heb al een account</string>
+    <string name="door_zonder_login">Doorgaan zonder account</string>
+    <string name="heeft_nog_geen_account">Ik heb nog geen account</string>
 </resources>

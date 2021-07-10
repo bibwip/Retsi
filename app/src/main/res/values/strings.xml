@@ -64,6 +64,18 @@
     <string name="importOpdracht">Het vak van deze opdracht heeft u niet. Wilt u deze toevoegen of een ander vak gebruiken?</string>
     <string name="title_activity_import_opdracht">Import Assignment</string>
 
+
+<!--   Registration -->
+    <string name="create_account">Registreren</string>
+    <string name="login" translatable="false">Login</string>
+    <string name="wachtwoord">Wachtwoord</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="naam">Naam</string>
+    <string name="Heeft_al_account">Ik heb al een account</string>
+    <string name="heeft_nog_geen_account">Ik heb nog geen account</string>
+    <string name="door_zonder_login">Doorgaan zonder account</string>
+
+
     <string-array name="typeOpdrachten">
         <item>Huiswerk</item>
         <item>Toets</item>

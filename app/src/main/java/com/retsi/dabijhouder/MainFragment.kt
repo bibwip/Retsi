@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_main.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -44,7 +43,11 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val recyclerView: RecyclerView = main_recycler_view
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
-        mAdapter = RecyclerAdapter(setData(), myDb, this.context)
+        mAdapter = RecyclerAdapter(
+            setData(),
+            myDb,
+            this.context
+        )
         recyclerView.adapter = mAdapter
 
         if (requireActivity().intent.hasExtra("refresh")) {
