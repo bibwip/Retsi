@@ -2,9 +2,7 @@ package com.retsi.dabijhouder
 
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.preference.ListPreference
 import androidx.preference.Preference

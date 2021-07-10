@@ -6,7 +6,9 @@ import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -15,8 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.fragment_main.*
-import java.util.*
+import com.retsi.dabijhouder.databinding.FragmentMainBinding
 import kotlin.collections.ArrayList
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -28,6 +29,23 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     var clicked = false
     private val toBeDeleted = ArrayList<Int>()
 
+    private var _binding: FragmentMainBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
@@ -36,12 +54,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         requireActivity().getSharedPreferences(getString(R.string.prefs), Context.MODE_PRIVATE)
 
 
-        btn_goto_add_assignment.setOnClickListener {
+        binding.btnGotoAddAssignment.setOnClickListener {
             val action = MainFragmentDirections.actionMainFragmentToAddAssignmentFragment()
             view.findNavController().navigate(action)
         }
 
-        val recyclerView: RecyclerView = main_recycler_view
+        val recyclerView: RecyclerView = binding.mainRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
         mAdapter = RecyclerAdapter(setData(), myDb, this.context)
@@ -60,7 +78,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                 }
                 opdrachtbackup = mAdapter!!.getItem(position)
                 val snackbar = Snackbar.make(
-                    coordinatorLayoutForMain,
+                    binding.coordinatorLayoutForMain,
                     R.string.deleted_opdracht, BaseTransientBottomBar.LENGTH_LONG
                 )
                 snackbar.setAction(android.R.string.cancel) {
@@ -224,82 +242,82 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun checkBoxesSetup() {
-        checkbox_all.isChecked = true
-        checkbox_all.setOnCheckedChangeListener { _, b ->
+        binding.checkboxAll.isChecked = true
+        binding.checkboxAll.setOnCheckedChangeListener { _, b ->
             if (b) {
-                checkBox_eindopdracht.isChecked = false
-                checkBox_toets.isChecked = false
-                checkBox_huiswerk.isChecked = false
-                checkBox_overig.isChecked = false
+                binding.checkBoxEindopdracht.isChecked = false
+                binding.checkBoxToets.isChecked = false
+                binding.checkBoxHuiswerk.isChecked = false
+                binding.checkBoxOverig.isChecked = false
                 chosenFilters.clear()
                 mAdapter!!.UpdateItems(setData())
             } else {
                 chosenFilters.clear()
             }
         }
-        checkBox_eindopdracht.setOnCheckedChangeListener { _, b ->
+        binding.checkBoxEindopdracht.setOnCheckedChangeListener { _, b ->
             if (b) {
-                if (checkbox_all.isChecked) checkbox_all.isChecked = false
+                if (binding.checkboxAll.isChecked) binding.checkboxAll.isChecked = false
                 chosenFilters.add(getString(R.string.Eindopdracht_key))
                 mAdapter!!.UpdateItems(setData())
             } else {
                 chosenFilters.remove(getString(R.string.Eindopdracht_key))
                 if (chosenFilters.size == 0) {
-                    checkbox_all.isChecked = true
+                    binding.checkboxAll.isChecked = true
                 }
                 mAdapter!!.UpdateItems(setData())
             }
         }
-        checkBox_toets.setOnCheckedChangeListener { _, b ->
+        binding.checkBoxToets.setOnCheckedChangeListener { _, b ->
             if (b) {
-                if (checkbox_all.isChecked) checkbox_all.isChecked = false
+                if (binding.checkboxAll.isChecked) binding.checkboxAll.isChecked = false
                 chosenFilters.add(getString(R.string.Toets_key))
                 mAdapter!!.UpdateItems(setData())
             } else {
                 chosenFilters.remove(getString(R.string.Toets_key))
                 if (chosenFilters.size == 0) {
-                    checkbox_all.isChecked = true
+                    binding.checkboxAll.isChecked = true
                 }
                 mAdapter!!.UpdateItems(setData())
             }
         }
-        checkBox_huiswerk.setOnCheckedChangeListener { _, b ->
+        binding.checkBoxHuiswerk.setOnCheckedChangeListener { _, b ->
             if (b) {
-                if (checkbox_all.isChecked) checkbox_all.isChecked = false
+                if (binding.checkboxAll.isChecked) binding.checkboxAll.isChecked = false
                 chosenFilters.add(getString(R.string.Huiswerk_key))
                 mAdapter!!.UpdateItems(setData())
             } else {
                 chosenFilters.remove(getString(R.string.Huiswerk_key))
                 if (chosenFilters.size == 0) {
-                    checkbox_all.isChecked = true
+                    binding.checkboxAll.isChecked = true
                 }
                 mAdapter!!.UpdateItems(setData())
             }
         }
-        checkBox_overig.setOnCheckedChangeListener { _, b ->
+        binding.checkBoxOverig.setOnCheckedChangeListener { _, b ->
             if (b) {
-                if (checkbox_all.isChecked) checkbox_all.isChecked = false
+                if (binding.checkboxAll.isChecked) binding.checkboxAll.isChecked = false
                 chosenFilters.add(getString(R.string.overig_key))
                 mAdapter!!.UpdateItems(setData())
             } else {
                 chosenFilters.remove(getString(R.string.overig_key))
                 if (chosenFilters.size == 0) {
-                    checkbox_all.isChecked = true
+                    binding.checkboxAll.isChecked = true
                 }
                 mAdapter!!.UpdateItems(setData())
             }
         }
-        img_btn_close_menu.setOnClickListener {
-            main_filters.visibility = View.GONE
-            img_btn_open_menu.visibility = View.VISIBLE
-            _____lijn2.visibility = View.GONE
-            _____lijn3.visibility = View.VISIBLE
+        binding.imgBtnCloseMenu.setOnClickListener {
+            binding.mainFilters.visibility = View.GONE
+            binding.imgBtnOpenMenu.visibility = View.VISIBLE
+            binding.lijn1.visibility = View.GONE
+            binding.lijn3.visibility = View.VISIBLE
         }
-        img_btn_open_menu.setOnClickListener {
-            main_filters.visibility = View.VISIBLE
-            img_btn_open_menu.visibility = View.GONE
-            _____lijn2.visibility = View.VISIBLE
-            _____lijn3.visibility = View.GONE
+        binding.imgBtnOpenMenu.setOnClickListener {
+            binding.mainFilters.visibility = View.VISIBLE
+            binding.imgBtnOpenMenu.visibility = View.GONE
+            binding.lijn1.visibility = View.VISIBLE
+            binding.lijn3.visibility = View.GONE
         }
     }
 

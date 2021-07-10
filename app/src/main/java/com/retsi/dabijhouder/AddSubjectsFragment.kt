@@ -3,13 +3,14 @@ package com.retsi.dabijhouder
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.view.WindowManager
+import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
-import kotlinx.android.synthetic.main.fragment_add_subjects.*
+import com.retsi.dabijhouder.databinding.FragmentAddSubjectsBinding
 import java.util.*
 
 class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), VakkenListAdapter.ItemClickListener{
@@ -20,6 +21,24 @@ class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), V
     companion object{
         const val PREFS_NAME = "MyPrefsFile"
         const val LANGUAGE_KEY = "language"
+    }
+
+    private var _binding: FragmentAddSubjectsBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentAddSubjectsBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 
@@ -38,20 +57,20 @@ class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), V
         super.onViewCreated(view, savedInstanceState)
         db = DatabaseHelper(activity)
 
-        Recycler_vakken.layoutManager = LinearLayoutManager(activity)
+        binding.RecyclerVakken.layoutManager = LinearLayoutManager(activity)
         adapter = VakkenListAdapter(db!!.allData2)
         adapter!!.setClickListener(this)
-        Recycler_vakken.adapter = adapter
+        binding.RecyclerVakken.adapter = adapter
 
-        btn_add_vak.setOnClickListener {
-            val vaknaam = edtTxt_vaknaam.text.toString().substring(0, 1)
-                .uppercase(Locale.getDefault()) + edtTxt_vaknaam.text.toString().substring(1)
+        binding.btnAddVak.setOnClickListener {
+            val vaknaam = binding.edtTxtVaknaam.text.toString().substring(0, 1)
+                .uppercase(Locale.getDefault()) + binding.edtTxtVaknaam.text.toString().substring(1)
             db!!.insertData(vaknaam, resources.getString(0 + R.color.background))
             adapter!!.updateData(db!!.allData2)
-            edtTxt_vaknaam.setText("")
+            binding.edtTxtVaknaam.setText("")
         }
 
-        btn_save_startup.setOnClickListener{
+        binding.btnSaveStartup.setOnClickListener{
             val action = AddSubjectsFragmentDirections.actionAddSubjectsFragmentToMainFragment()
             view.findNavController().navigate(action)
         }
@@ -66,7 +85,7 @@ class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), V
                 .initialColor(R.color.white)
                 .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
                 .density(12)
-                .setPositiveButton(R.string.ok) { d, lastSelectedColor, _ ->
+                .setPositiveButton(android.R.string.ok) { d, lastSelectedColor, _ ->
                     db!!.updateVakkenData(
                         adapter!!.getItem(position).vaknaam, "#" +
                                 Integer.toHexString(lastSelectedColor)
