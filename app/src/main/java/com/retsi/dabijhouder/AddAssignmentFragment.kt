@@ -1,15 +1,15 @@
 package com.retsi.dabijhouder
 
-import android.annotation.SuppressLint
 import android.appwidget.AppWidgetManager
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.DatePicker.OnDateChangedListener
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import kotlinx.android.synthetic.main.fragment_add_assignment.*
+import com.retsi.dabijhouder.databinding.FragmentAddAssignmentBinding
 import java.util.*
 
 class AddAssignmentFragment : NoToolBarFragment(R.layout.fragment_add_assignment) {
@@ -22,6 +22,25 @@ class AddAssignmentFragment : NoToolBarFragment(R.layout.fragment_add_assignment
     lateinit var beschrijving : String
     lateinit var vaknaam : String
 
+    private var _binding: FragmentAddAssignmentBinding? = null
+    private val binding get() = _binding!!
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentAddAssignmentBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -31,18 +50,18 @@ class AddAssignmentFragment : NoToolBarFragment(R.layout.fragment_add_assignment
         SetupRadioButtons()
         setupSpinner()
 
-        btn_kies_datum.setOnClickListener { KiesDatum() }
+        binding.btnKiesDatum.setOnClickListener { KiesDatum() }
 
-        btnMakeAssignment.setOnClickListener {
-            vaknaam = spinnerVakken.selectedItem.toString()
-            titel = edtTxtOpdrachtNaam.text.toString()
+        binding.btnMakeAssignment.setOnClickListener {
+            vaknaam = binding.spinnerVakken.selectedItem.toString()
+            titel = binding.edtTxtOpdrachtNaam.text.toString()
             if (titel == "") {
-                edtTxtOpdrachtNaam.error = getString(R.string.error)
+                binding.edtTxtOpdrachtNaam.error = getString(R.string.error)
             } else if (datum == "") {
-                tv_gekozen_datum.text = getString(R.string.datum_error)
-                tv_gekozen_datum.setTextColor(resources.getColor(R.color.red))
+                binding.tvGekozenDatum.text = getString(R.string.datum_error)
+                binding.tvGekozenDatum.setTextColor(resources.getColor(R.color.red))
             } else {
-                beschrijving = edtTxtBeschrijving.text.toString()
+                beschrijving = binding.edtTxtBeschrijving.text.toString()
                 myDb.insertData(typeOpdracht, vaknaam, titel, datum, beschrijving)
                 val updateWidgetIntent = Intent()
                 updateWidgetIntent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
@@ -56,15 +75,15 @@ class AddAssignmentFragment : NoToolBarFragment(R.layout.fragment_add_assignment
     }
 
     private fun KiesDatum() {
-        datePicker.visibility = View.VISIBLE
-        radioGroupTypeAssignment.visibility = View.GONE
-        edtTxtBeschrijving.visibility = View.GONE
-        edtTxtOpdrachtNaam.visibility = View.GONE
-        spinnerVakken.visibility = View.GONE
-        btnMakeAssignment.visibility = View.GONE
-        btn_kies_datum.visibility = View.GONE
-        btn_ok_datum.visibility = View.VISIBLE
-        tv_gekozen_datum.visibility = View.GONE
+        binding.datePicker.visibility = View.VISIBLE
+        binding.radioGroupTypeAssignment.visibility = View.GONE
+        binding.edtTxtBeschrijving.visibility = View.GONE
+        binding.edtTxtOpdrachtNaam.visibility = View.GONE
+        binding.spinnerVakken.visibility = View.GONE
+        binding.btnMakeAssignment.visibility = View.GONE
+        binding.btnKiesDatum.visibility = View.GONE
+        binding.btnOkDatum.visibility = View.VISIBLE
+        binding.tvGekozenDatum.visibility = View.GONE
         val onDateChangedListener =
             OnDateChangedListener { _, i, i1, i2 ->
                 var dag = i2.toString()
@@ -73,22 +92,22 @@ class AddAssignmentFragment : NoToolBarFragment(R.layout.fragment_add_assignment
                 if (dag.length == 1) dag = "0$dag"
                 if (maand.length == 1) maand = "0$maand"
                 datum = "$dag-$maand-$jaar"
-                tv_gekozen_datum.setTextColor(resources.getColor(R.color.grey))
-                tv_gekozen_datum.text = datum
+                binding.tvGekozenDatum.setTextColor(resources.getColor(R.color.grey))
+                binding.tvGekozenDatum.text = datum
             }
 
-        btn_ok_datum.setOnClickListener {
-            datePicker.visibility = View.GONE
-            radioGroupTypeAssignment.visibility = View.VISIBLE
-            edtTxtBeschrijving.visibility = View.VISIBLE
-            edtTxtOpdrachtNaam.visibility = View.VISIBLE
-            spinnerVakken.visibility = View.VISIBLE
-            btnMakeAssignment.visibility = View.VISIBLE
-            btn_kies_datum.visibility = View.VISIBLE
-            btn_ok_datum.visibility = View.GONE
-            tv_gekozen_datum.visibility = View.VISIBLE
+        binding.btnOkDatum.setOnClickListener {
+            binding.datePicker.visibility = View.GONE
+            binding.radioGroupTypeAssignment.visibility = View.VISIBLE
+            binding.edtTxtBeschrijving.visibility = View.VISIBLE
+            binding.edtTxtOpdrachtNaam.visibility = View.VISIBLE
+            binding.spinnerVakken.visibility = View.VISIBLE
+            binding.btnMakeAssignment.visibility = View.VISIBLE
+            binding.btnKiesDatum.visibility = View.VISIBLE
+            binding.btnOkDatum.visibility = View.GONE
+            binding.tvGekozenDatum.visibility = View.VISIBLE
         }
-        datePicker.init(
+        binding.datePicker.init(
             Calendar.getInstance()[Calendar.YEAR],
             Calendar.getInstance()[Calendar.MONTH],
             Calendar.getInstance()[Calendar.DAY_OF_MONTH],
@@ -102,32 +121,32 @@ class AddAssignmentFragment : NoToolBarFragment(R.layout.fragment_add_assignment
             R.layout.support_simple_spinner_dropdown_item,
             myDb.vakkenNamen)
 
-        spinnerVakken.adapter = spinnerAdapter
+        binding.spinnerVakken.adapter = spinnerAdapter
     }
 
     private fun SetupRadioButtons() {
-        rbnEindopdracht.setOnClickListener {
-            rbnHuiswerk.isChecked = false
-            rbnOverig.isChecked = false
-            rbnToets.isChecked = false
+        binding.rbnEindopdracht.setOnClickListener {
+            binding.rbnHuiswerk.isChecked = false
+            binding.rbnOverig.isChecked = false
+            binding.rbnToets.isChecked = false
             typeOpdracht = getString(R.string.Eindopdracht_key)
         }
-        rbnHuiswerk.setOnClickListener {
-            rbnEindopdracht.isChecked = false
-            rbnOverig.isChecked = false
-            rbnToets.isChecked = false
+        binding.rbnHuiswerk.setOnClickListener {
+            binding.rbnEindopdracht.isChecked = false
+            binding.rbnOverig.isChecked = false
+            binding.rbnToets.isChecked = false
             typeOpdracht = getString(R.string.Huiswerk_key)
         }
-        rbnToets.setOnClickListener {
-            rbnHuiswerk.isChecked = false
-            rbnOverig.isChecked = false
-            rbnEindopdracht.isChecked = false
+        binding.rbnToets.setOnClickListener {
+            binding.rbnHuiswerk.isChecked = false
+            binding.rbnOverig.isChecked = false
+            binding.rbnEindopdracht.isChecked = false
             typeOpdracht = getString(R.string.Toets_key)
         }
-        rbnOverig.setOnClickListener {
-            rbnHuiswerk.isChecked = false
-            rbnEindopdracht.isChecked = false
-            rbnToets.isChecked = false
+        binding.rbnOverig.setOnClickListener {
+            binding.rbnHuiswerk.isChecked = false
+            binding.rbnEindopdracht.isChecked = false
+            binding.rbnToets.isChecked = false
             typeOpdracht = getString(R.string.overig_key)
         }
     }

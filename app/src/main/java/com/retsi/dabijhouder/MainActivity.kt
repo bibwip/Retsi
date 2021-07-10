@@ -13,7 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.flask.colorpicker.BuildConfig
-import kotlinx.android.synthetic.main.activity_main.*
+import com.retsi.dabijhouder.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
 
@@ -24,9 +24,13 @@ class MainActivity : BaseActivity() {
     private var shareIntent: Intent? = null
     private var prefs: SharedPreferences? = null
 
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment
         navController = navHostFragment.findNavController()
@@ -37,7 +41,7 @@ class MainActivity : BaseActivity() {
 
         appBarConfiguration = AppBarConfiguration(setOf(R.id.mainFragment, R.id.welcomeFragment))
 
-        setSupportActionBar(toolbar)
+        setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         shareIntent = Intent()

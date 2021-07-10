@@ -112,7 +112,7 @@
                 android:src="@drawable/lijn"
                 android:layout_below="@+id/main_filters"
                 android:layout_marginHorizontal="10dp"
-                android:id="@+id/_____lijn2"/>
+                android:id="@+id/lijn1"/>
 
             <ImageView
                 android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                 android:src="@drawable/lijn"
                 android:layout_below="@+id/img_btn_open_menu"
                 android:layout_marginHorizontal="10dp"
-                android:id="@+id/_____lijn3"
+                android:id="@+id/lijn3"
                 android:visibility="gone"/>
 
 
