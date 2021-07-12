@@ -180,7 +180,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             val bes = data.getQueryParameter(getString(R.string.beschrijving))!!
             requireActivity().intent.data = null
             var inlist = false
-            for (item in myDb!!.allData2) {
+            for (item in myDb!!.allData2()) {
                 if (vak == item.vaknaam) {
                     inlist = true
                     myDb!!.insertData(type, vak, titel, datum, bes)
@@ -204,7 +204,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             filters.add(getString(R.string.overig_key))
         }
         val items = ArrayList<OpdrachtItem>()
-        val res: Cursor = myDb!!.allData
+        val res: Cursor = myDb!!.allData()
         if (res.count == 0) {
             return items
         }

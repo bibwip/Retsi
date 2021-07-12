@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.NavController
@@ -13,6 +14,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.flask.colorpicker.BuildConfig
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.retsi.dabijhouder.databinding.ActivityMainBinding
 
 class MainActivity : BaseActivity() {
@@ -93,11 +97,42 @@ class MainActivity : BaseActivity() {
         prefs!!.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply()
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (Firebase.auth.currentUser != null){
+            val db = DatabaseHelper(this)
+            updateFirestoreData(db.opdrachten())
+        } else  Log.d(TAG, "User not signed in")
+    }
+
+
+    private fun updateFirestoreData(items : ArrayList<OpdrachtItem>) {
+        val uid = Firebase.auth.currentUser!!.uid
+
+        val fireStoreDb = Firebase.firestore
+
+        for (item in items){
+            val data = hashMapOf(
+                "id" to item.id,
+                "typeOpdracht" to item.typeOpdracht,
+                "vak" to item.vakNaam,
+                "titel" to item.titel,
+                "datum" to item.datum,
+                "beschrijving" to item.beschrijving,
+                "belangerijk" to item.belangerijk
+            )
+            fireStoreDb.collection("users").document(uid).collection("items").document(item.id.toString()).set(data)
+                .addOnFailureListener { Log.w(TAG, "Failed to upload data to firebase: ${it.message}") }
+                .addOnSuccessListener { Log.d(TAG, "succesfully uploaded data to firebase") }
+        }
+    }
+
     companion object {
         const val apkURl =
             "https://drive.google.com/drive/folders/1lVLj9Ucl-RdRX9ABggtomy_8Hi8nsf1y?usp=sharing"
         const val PREF_VERSION_CODE_KEY = "version_code"
         const val DOESNT_EXIST = -1
+        const val TAG = "registration"
     }
 
     override fun onBackPressed() {

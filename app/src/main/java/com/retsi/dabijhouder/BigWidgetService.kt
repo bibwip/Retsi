@@ -29,7 +29,7 @@ class BigWidgetService : RemoteViewsService() {
         }
         override fun onDataSetChanged() {
             items.clear()
-            val res: Cursor = db.allData
+            val res: Cursor = db.allData()
 
             while (res.moveToNext()) {
                 val id = res.getInt(0)

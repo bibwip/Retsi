@@ -45,7 +45,7 @@ class ImportOpdrachtFragment: NoToolBarFragment(R.layout.fragment_import_opdrach
         val spinnerAdapter: ArrayAdapter<String> = ArrayAdapter(
             requireContext(),
             R.layout.support_simple_spinner_dropdown_item,
-            myDb.vakkenNamen
+            myDb.vakkenNamen()
         )
         binding.importSpinner.adapter = spinnerAdapter
 

@@ -71,7 +71,7 @@ class EditOpdrachtFragment : NoToolBarFragment(R.layout.fragment_edit_opdracht) 
         )
         binding.editOpTypeopdracht.adapter = vakSpinnerAdapter
 
-        val list = myDb.vakkenNamen
+        val list = myDb.vakkenNamen()
 
         val spinnerAdapter = ArrayAdapter(
             requireContext(),

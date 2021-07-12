@@ -119,7 +119,8 @@ class AddAssignmentFragment : NoToolBarFragment(R.layout.fragment_add_assignment
         val spinnerAdapter = ArrayAdapter(
             requireContext(), 
             R.layout.support_simple_spinner_dropdown_item,
-            myDb.vakkenNamen)
+            myDb.vakkenNamen()
+        )
 
         binding.spinnerVakken.adapter = spinnerAdapter
     }
