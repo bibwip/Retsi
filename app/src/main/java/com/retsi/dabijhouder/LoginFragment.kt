@@ -3,16 +3,22 @@ package com.retsi.dabijhouder
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.retsi.dabijhouder.databinding.FragmentLoginUserBinding
 
 class LoginFragment : NoToolBarFragment(R.layout.fragment_login_user) {
 
     private var _binding: FragmentLoginUserBinding? = null
     private val binding get() = _binding!!
+
+    val TAG = "Login"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,8 +54,12 @@ class LoginFragment : NoToolBarFragment(R.layout.fragment_login_user) {
 
         // Use credentials to login to account
         binding.loginFragmentBtnLogin.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToAddSubjectsFragment()
-            navController.navigate(action)
+
+            val email = binding.loginFragmentEmailEdtTxt.text.toString()
+            val password = binding.loginFragmentPasswordEdtTxt.text.toString()
+
+            loginWithCredentials(email, password)
+
         }
 
         // Go to register fragment to  make an account
@@ -63,5 +73,20 @@ class LoginFragment : NoToolBarFragment(R.layout.fragment_login_user) {
             val action = LoginFragmentDirections.actionLoginFragmentToAddSubjectsFragment()
             navController.navigate(action)
         }
+    }
+
+    private fun loginWithCredentials(email: String, password: String) {
+
+        val auth = Firebase.auth
+
+        auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
+            Log.d(TAG, "sign in with email completed, email: $email")
+            val action = LoginFragmentDirections.actionLoginFragmentToAddSubjectsFragment()
+            findNavController().navigate(action)
+        }.addOnFailureListener {
+                Log.w(TAG, "sign in with email failed: $it")
+            Toast.makeText(requireContext(), "Authentication failed", Toast.LENGTH_SHORT).show()
+        }
+
     }
 }

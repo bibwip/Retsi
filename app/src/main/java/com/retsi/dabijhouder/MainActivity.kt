@@ -110,7 +110,6 @@ class MainActivity : BaseActivity() {
         val uid = Firebase.auth.currentUser!!.uid
 
         val fireStoreDb = Firebase.firestore
-
         for (item in items){
             val data = hashMapOf(
                 "id" to item.id,

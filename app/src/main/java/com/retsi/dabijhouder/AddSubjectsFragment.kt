@@ -10,12 +10,15 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.flask.colorpicker.ColorPickerView
 import com.flask.colorpicker.builder.ColorPickerDialogBuilder
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.retsi.dabijhouder.databinding.FragmentAddSubjectsBinding
 import java.util.*
 
 class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), VakkenListAdapter.ItemClickListener{
 
-    private var db: DatabaseHelper? = null
+    private lateinit var db: DatabaseHelper
     private var adapter: VakkenListAdapter? = null
 
     companion object{
@@ -58,19 +61,29 @@ class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), V
         db = DatabaseHelper(activity)
 
         binding.RecyclerVakken.layoutManager = LinearLayoutManager(activity)
-        adapter = VakkenListAdapter(db!!.allData2())
+        adapter = VakkenListAdapter(db.allData2())
         adapter!!.setClickListener(this)
         binding.RecyclerVakken.adapter = adapter
 
         binding.btnAddVak.setOnClickListener {
             val vaknaam = binding.edtTxtVaknaam.text.toString().substring(0, 1)
                 .uppercase(Locale.getDefault()) + binding.edtTxtVaknaam.text.toString().substring(1)
-            db!!.insertData(vaknaam, resources.getString(0 + R.color.background))
-            adapter!!.updateData(db!!.allData2())
+            db.insertData(vaknaam, resources.getString(0 + R.color.background))
+            adapter!!.updateData(db.allData2())
             binding.edtTxtVaknaam.setText("")
         }
 
         binding.btnSaveStartup.setOnClickListener{
+
+            if (Firebase.auth.currentUser != null){
+                val firestore = Firebase.firestore
+                val uid = Firebase.auth.currentUser!!.uid
+
+                for (vak in db.allData2()) {
+                    firestore.collection("users").document(uid).collection("subjects").document(vak.vaknaam).set(vak)
+                }
+            }
+
             val action = AddSubjectsFragmentDirections.actionAddSubjectsFragmentToMainFragment()
             view.findNavController().navigate(action)
         }
@@ -86,11 +99,11 @@ class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), V
                 .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
                 .density(12)
                 .setPositiveButton(android.R.string.ok) { d, lastSelectedColor, _ ->
-                    db!!.updateVakkenData(
+                    db.updateVakkenData(
                         adapter!!.getItem(position).vaknaam, "#" +
                                 Integer.toHexString(lastSelectedColor)
                     )
-                    adapter!!.updateData(db!!.allData2())
+                    adapter!!.updateData(db.allData2())
                     d.cancel()
                 }
                 .setNegativeButton(android.R.string.cancel) { dialog, _ ->
@@ -99,8 +112,8 @@ class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), V
                 .build()
                 .show()
         }else if (id == R.id.tv_delete_vak || id == R.id.image_delete_vak) {
-            db!!.deleteVak(adapter!!.getItem(position).vaknaam, adapter!!.getItem(position).vakColor)
-            adapter!!.updateData(db!!.allData2())
+            db.deleteVak(adapter!!.getItem(position).vaknaam, adapter!!.getItem(position).vakColor)
+            adapter!!.updateData(db.allData2())
         }
     }
 }
