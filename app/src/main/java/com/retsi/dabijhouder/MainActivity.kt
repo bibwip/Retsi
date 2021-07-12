@@ -63,8 +63,9 @@ class MainActivity : BaseActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_share -> {
-                val sendIntent = Intent.createChooser(shareIntent, null)
-                startActivity(sendIntent)
+                navController.navigate(R.id.action_mainFragment_to_welcomeFragment)
+//                val sendIntent = Intent.createChooser(shareIntent, null)
+//                startActivity(sendIntent)
                 true
             }
             else -> item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)

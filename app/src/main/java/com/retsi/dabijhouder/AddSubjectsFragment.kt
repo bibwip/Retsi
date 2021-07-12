@@ -85,7 +85,7 @@ class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), V
                 .initialColor(R.color.white)
                 .wheelType(ColorPickerView.WHEEL_TYPE.FLOWER)
                 .density(12)
-                .setPositiveButton(R.string.ok) { d, lastSelectedColor, _ ->
+                .setPositiveButton(android.R.string.ok) { d, lastSelectedColor, _ ->
                     db!!.updateVakkenData(
                         adapter!!.getItem(position).vaknaam, "#" +
                                 Integer.toHexString(lastSelectedColor)
