@@ -6,6 +6,7 @@ import android.content.Intent
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,17 +18,23 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 import com.retsi.dabijhouder.databinding.FragmentMainBinding
 import kotlin.collections.ArrayList
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     
-    private var myDb: DatabaseHelper? = null
+    private lateinit var myDb: DatabaseHelper
     private var mAdapter: RecyclerAdapter? = null
     private var chosenFilters = ArrayList<String>()
     var opdrachtbackup: OpdrachtItem? = null
     var clicked = false
     private val toBeDeleted = ArrayList<Int>()
+
+    val TAG = "Main"
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -50,6 +57,33 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
         
         myDb = DatabaseHelper(requireContext())
+
+        if (Firebase.auth.currentUser != null) {
+            Firebase.firestore.collection("users").document(Firebase.auth.currentUser!!.uid)
+                .collection("subjects").get().addOnSuccessListener { documents ->
+                    Log.d(TAG,"succesfully collected subjects from firestore")
+                    val vakken = ArrayList<VakItem>()
+                    for (document in documents){
+                        val vak = document.toObject<VakItem>()
+                        vakken.add(vak)
+                    }
+
+                    myDb.replaceVakken(vakken)
+
+                }
+                .addOnFailureListener { Log.w(TAG,"failed to collect subjects from firestore") }
+
+            Firebase.firestore.collection("users").document(Firebase.auth.currentUser!!.uid)
+                .collection("items").get().addOnSuccessListener { opdrachten ->
+                    Log.d(TAG,"succesfully collected items from firestore")
+                    for (opdrachtRaw in opdrachten) {
+                        val opdracht = opdrachtRaw.toObject<OpdrachtItem>()
+                        myDb.updateOpdracht(opdracht.id.toString(), opdracht.typeOpdracht,
+                            opdracht.vakNaam, opdracht.titel, opdracht.datum, opdracht.beschrijving)
+                    }
+                }
+                .addOnFailureListener { Log.w(TAG,"failed to collect items from firestore") }
+        }
 
         requireActivity().getSharedPreferences(getString(R.string.prefs), Context.MODE_PRIVATE)
 
@@ -158,9 +192,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                     }
                     R.id.menu_action_set_priority -> {
                         if (item.belangerijk == 1){
-                            myDb!!.SetBelangerijk(item.id, 0)
+                            myDb.SetBelangerijk(item.id, 0)
                         } else{
-                            myDb!!.SetBelangerijk(item.id, 1)
+                            myDb.SetBelangerijk(item.id, 1)
                         }
                         mAdapter!!.UpdateItems(setData())
                         true
@@ -180,10 +214,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             val bes = data.getQueryParameter(getString(R.string.beschrijving))!!
             requireActivity().intent.data = null
             var inlist = false
-            for (item in myDb!!.allData2()) {
+            for (item in myDb.allData2()) {
                 if (vak == item.vaknaam) {
                     inlist = true
-                    myDb!!.insertData(type, vak, titel, datum, bes)
+                    myDb.insertData(type, vak, titel, datum, bes)
                     mAdapter!!.UpdateItems(setData())
                 }
             }
@@ -204,7 +238,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             filters.add(getString(R.string.overig_key))
         }
         val items = ArrayList<OpdrachtItem>()
-        val res: Cursor = myDb!!.allData()
+        val res: Cursor = myDb.allData()
         if (res.count == 0) {
             return items
         }
@@ -329,7 +363,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onPause()
         if (toBeDeleted.isNotEmpty()){
             for (id in toBeDeleted){
-                myDb!!.deleteOpdracht(id)
+                myDb.deleteOpdracht(id)
             }
             val updateWidgetIntent = Intent()
             updateWidgetIntent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE

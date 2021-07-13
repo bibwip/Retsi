@@ -111,16 +111,7 @@ class MainActivity : BaseActivity() {
 
         val fireStoreDb = Firebase.firestore
         for (item in items){
-            val data = hashMapOf(
-                "id" to item.id,
-                "typeOpdracht" to item.typeOpdracht,
-                "vak" to item.vakNaam,
-                "titel" to item.titel,
-                "datum" to item.datum,
-                "beschrijving" to item.beschrijving,
-                "belangerijk" to item.belangerijk
-            )
-            fireStoreDb.collection("users").document(uid).collection("items").document(item.id.toString()).set(data)
+            fireStoreDb.collection("users").document(uid).collection("items").document(item.id.toString()).set(item)
                 .addOnFailureListener { Log.w(TAG, "Failed to upload data to firebase: ${it.message}") }
                 .addOnSuccessListener { Log.d(TAG, "succesfully uploaded data to firebase") }
         }

@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import java.util.*
+import kotlin.collections.ArrayList
 
 class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, 2) {
     private val table1data = ArrayList<ContentValues>()
@@ -66,7 +67,11 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         contentValues.put(COL_4, titel)
         contentValues.put(COL_5, datum)
         contentValues.put(COL_6, besschrijving)
-        db.update(TABLE_NAME, contentValues, "ID = ?", arrayOf(id))
+        val affectedRows = db.update(TABLE_NAME, contentValues, "ID = ?", arrayOf(id))
+        if (affectedRows == 0) {
+            db.insert(TABLE_NAME, null, contentValues)
+        }
+        db.close()
     }
 
     fun insertData(
@@ -85,6 +90,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         contentValues.put(COL_6, beschrijving)
         contentValues.put(COL_7, 0)
         val result = db.insert(TABLE_NAME, null, contentValues)
+        db.close()
         return result != -1L
     }
 
@@ -120,6 +126,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
                 0
             }
         }
+        db.close()
         return items
 
     }
@@ -213,6 +220,16 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         val contentValues = ContentValues()
         contentValues.put(COL_7, waarde)
         db.update(TABLE_NAME, contentValues, "ID = '$id'", arrayOf())
+    }
+
+    fun replaceVakken(vakken : ArrayList<VakItem>) {
+        val db = this.writableDatabase
+
+        db.execSQL("delete from $TABLE_NAME1")
+
+        for (vak in vakken){
+            insertData(vak.vaknaam, vak.vakColor)
+        }
     }
 
     companion object {

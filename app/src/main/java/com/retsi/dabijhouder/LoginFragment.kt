@@ -70,7 +70,7 @@ class LoginFragment : NoToolBarFragment(R.layout.fragment_login_user) {
 
         // Continue without logging in
         binding.loginFragmentBtnContinue.setOnClickListener {
-            val action = LoginFragmentDirections.actionLoginFragmentToAddSubjectsFragment()
+            val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
             navController.navigate(action)
         }
     }
@@ -81,7 +81,10 @@ class LoginFragment : NoToolBarFragment(R.layout.fragment_login_user) {
 
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             Log.d(TAG, "sign in with email completed, email: $email")
-            val action = LoginFragmentDirections.actionLoginFragmentToAddSubjectsFragment()
+
+
+
+            val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
             findNavController().navigate(action)
         }.addOnFailureListener {
                 Log.w(TAG, "sign in with email failed: $it")
