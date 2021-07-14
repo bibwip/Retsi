@@ -18,16 +18,15 @@ class LoginFragment : NoToolBarFragment(R.layout.fragment_login_user) {
     private var _binding: FragmentLoginUserBinding? = null
     private val binding get() = _binding!!
 
-    val TAG = "Login"
+    private val TAG = "Login"
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentLoginUserBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -82,7 +81,7 @@ class LoginFragment : NoToolBarFragment(R.layout.fragment_login_user) {
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             Log.d(TAG, "sign in with email completed, email: $email")
 
-
+            (activity as MainActivity).importDataFromFirestore(DatabaseHelper(requireContext()))
 
             val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
             findNavController().navigate(action)

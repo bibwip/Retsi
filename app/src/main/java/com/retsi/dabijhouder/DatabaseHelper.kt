@@ -71,7 +71,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         if (affectedRows == 0) {
             db.insert(TABLE_NAME, null, contentValues)
         }
-        db.close()
+        
     }
 
     fun insertData(
@@ -90,7 +90,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
         contentValues.put(COL_6, beschrijving)
         contentValues.put(COL_7, 0)
         val result = db.insert(TABLE_NAME, null, contentValues)
-        db.close()
+        
         return result != -1L
     }
 
@@ -126,7 +126,7 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
                 0
             }
         }
-        db.close()
+        
         return items
 
     }

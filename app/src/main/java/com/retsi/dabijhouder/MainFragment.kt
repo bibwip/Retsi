@@ -34,7 +34,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     var clicked = false
     private val toBeDeleted = ArrayList<Int>()
 
-    val TAG = "Main"
+    private val TAG = "Main"
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
@@ -58,32 +58,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         
         myDb = DatabaseHelper(requireContext())
 
-        if (Firebase.auth.currentUser != null) {
-            Firebase.firestore.collection("users").document(Firebase.auth.currentUser!!.uid)
-                .collection("subjects").get().addOnSuccessListener { documents ->
-                    Log.d(TAG,"succesfully collected subjects from firestore")
-                    val vakken = ArrayList<VakItem>()
-                    for (document in documents){
-                        val vak = document.toObject<VakItem>()
-                        vakken.add(vak)
-                    }
-
-                    myDb.replaceVakken(vakken)
-
-                }
-                .addOnFailureListener { Log.w(TAG,"failed to collect subjects from firestore") }
-
-            Firebase.firestore.collection("users").document(Firebase.auth.currentUser!!.uid)
-                .collection("items").get().addOnSuccessListener { opdrachten ->
-                    Log.d(TAG,"succesfully collected items from firestore")
-                    for (opdrachtRaw in opdrachten) {
-                        val opdracht = opdrachtRaw.toObject<OpdrachtItem>()
-                        myDb.updateOpdracht(opdracht.id.toString(), opdracht.typeOpdracht,
-                            opdracht.vakNaam, opdracht.titel, opdracht.datum, opdracht.beschrijving)
-                    }
-                }
-                .addOnFailureListener { Log.w(TAG,"failed to collect items from firestore") }
-        }
 
         requireActivity().getSharedPreferences(getString(R.string.prefs), Context.MODE_PRIVATE)
 

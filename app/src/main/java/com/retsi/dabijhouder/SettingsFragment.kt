@@ -7,6 +7,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.preference.ListPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class SettingsFragment : PreferenceFragmentCompat() {
 
@@ -21,7 +23,35 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val prefs = requireActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
         val taal = prefs.getString(LANGUAGE_KEY, "en-us")
 
-        val taalPref = findPreference<ListPreference>("taal")
+        val loginPref = findPreference<Preference>("pref_login")
+        val logoutPref = findPreference<Preference>("pref_logout")
+
+        if (Firebase.auth.currentUser != null){
+            if (logoutPref != null && loginPref != null) {
+                logoutPref.isVisible = true
+                loginPref.isVisible = false
+            }
+        } else {
+            if (logoutPref != null && loginPref != null) {
+                logoutPref.isVisible = false
+                loginPref.isVisible = true
+            }
+        }
+
+        loginPref?.setOnPreferenceClickListener {
+            val action = SettingsFragmentDirections.actionSettingsFragmentToLoginFragment()
+            findNavController().navigate(action)
+            true
+        }
+
+        logoutPref?.setOnPreferenceClickListener {
+            Firebase.auth.signOut()
+            val action = SettingsFragmentDirections.actionSettingsFragmentToMainFragment2()
+            findNavController().navigate(action)
+            true
+        }
+
+        val taalPref = findPreference<ListPreference>("pref_taal")
         taalPref!!.setDefaultValue(taal)
 
         taalPref.onPreferenceChangeListener =
@@ -42,7 +72,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
                 true }
 
-        val vakkenPref = findPreference<Preference>("vakken")
+        val vakkenPref = findPreference<Preference>("pref_vakken")
         vakkenPref!!.onPreferenceClickListener = Preference.OnPreferenceClickListener {
             val action = SettingsFragmentDirections.actionSettingsFragmentToAddSubjectsFragment()
             findNavController().navigate(action)

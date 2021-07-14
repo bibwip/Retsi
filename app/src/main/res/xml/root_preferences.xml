@@ -1,17 +1,30 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ListPreference
         app:defaultValue="Nederlands"
         app:entries="@array/talen"
         app:entryValues="@array/talen"
-        app:key="taal"
+        app:key="pref_taal"
         app:title="@string/kies_taal"
         app:useSimpleSummaryProvider="true" />
 
     <Preference
-        android:title="Bewerk vakken"
-        android:key="vakken"/>
+        android:key="pref_vakken"
+        android:summary="make changes to yout subjects"
+        android:title="Bewerk vakken" />
+
+    <Preference
+        android:icon="@drawable/ic_logout"
+        android:key="pref_logout"
+        android:summary="log out of your account"
+        android:title="logout" />
+
+    <Preference
+        android:icon="@drawable/ic_login"
+        android:key="pref_login"
+        android:summary="log in to your account or create a new one"
+        android:title="@string/login" />
 
 
 </PreferenceScreen>

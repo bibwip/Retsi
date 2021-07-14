@@ -16,6 +16,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.flask.colorpicker.BuildConfig
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.retsi.dabijhouder.databinding.ActivityMainBinding
 
@@ -35,6 +36,8 @@ class MainActivity : BaseActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        importDataFromFirestore(DatabaseHelper(this))
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.main_fragment_container) as NavHostFragment
         navController = navHostFragment.findNavController()
@@ -128,6 +131,39 @@ class MainActivity : BaseActivity() {
     override fun onBackPressed() {
         if (navController.currentDestination!!.id != R.id.welcomeFragment ) {
             super.onBackPressed()
+        }
+    }
+
+
+    fun importDataFromFirestore(myDb:DatabaseHelper) {
+        if (Firebase.auth.currentUser != null) {
+            Log.d(TAG, "user is not null")
+            Firebase.firestore.collection("users").document(Firebase.auth.currentUser!!.uid)
+                .collection("subjects").get().addOnSuccessListener { documents ->
+                    Log.d(TAG,"succesfully collected subjects from firestore")
+                    val vakken = ArrayList<VakItem>()
+                    for (document in documents){
+                        Log.d(TAG, "before")
+                        val vak = document.toObject<VakItem>()
+                        Log.d(TAG, "after")
+                        vakken.add(vak)
+                    }
+
+                    myDb.replaceVakken(vakken)
+
+                }
+                .addOnFailureListener { Log.w(TAG,"failed to collect subjects from firestore") }
+
+            Firebase.firestore.collection("users").document(Firebase.auth.currentUser!!.uid)
+                .collection("items").get().addOnSuccessListener { opdrachten ->
+                    Log.d(TAG,"succesfully collected items from firestore")
+                    for (opdrachtRaw in opdrachten) {
+                        val opdracht = opdrachtRaw.toObject<OpdrachtItem>()
+                        myDb.updateOpdracht(opdracht.id.toString(), opdracht.typeOpdracht,
+                            opdracht.vakNaam, opdracht.titel, opdracht.datum, opdracht.beschrijving)
+                    }
+                }
+                .addOnFailureListener { Log.w(TAG,"failed to collect items from firestore") }
         }
     }
 }
