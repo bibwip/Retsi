@@ -14,6 +14,7 @@ import android.widget.PopupMenu
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
@@ -26,7 +27,7 @@ import com.retsi.dabijhouder.databinding.FragmentMainBinding
 import kotlin.collections.ArrayList
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    
+
     private lateinit var myDb: DatabaseHelper
     private var mAdapter: RecyclerAdapter? = null
     private var chosenFilters = ArrayList<String>()
@@ -342,6 +343,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
             val updateWidgetIntent = Intent()
             updateWidgetIntent.action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
             requireActivity().sendBroadcast(updateWidgetIntent)
+        }
+    }
+
+    fun updateAdapData(){
+        if (mAdapter != null) {
+            mAdapter!!.UpdateItems(setData())
         }
     }
 }

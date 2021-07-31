@@ -9,9 +9,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAME, null, 2) {
+
     private val table1data = ArrayList<ContentValues>()
     private val table2data = ArrayList<ContentValues>()
     private var updated = false
+
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL("create table $TABLE_NAME ($COL_1 INTEGER PRIMARY KEY AUTOINCREMENT, $COL_2 TEXT, $COL_3 TEXT, $COL_4 TEXT, $COL_5 TEXT, $COL_6 TEXT, $COL_7 BOOLEAN)")
         db.execSQL("create table $TABLE_NAME1(ID INTEGER PRIMARY KEY AUTOINCREMENT, VAK TEXT, KLEUR TEXT)")
@@ -153,18 +155,21 @@ class DatabaseHelper(context: Context?) : SQLiteOpenHelper(context, DATABASE_NAM
                 return arrayList
             }
             while (res.moveToNext()) {
-                val item = VakItem(res.getString(1), res.getString(2))
+                val item = VakItem(res.getString(0).toInt(), res.getString(1), res.getString(2))
                 arrayList.add(item)
             }
             return arrayList
         }
 
-    fun updateVakkenData(naam: String, kleur: String?): Boolean {
+    fun updateVakkenData(id: Int, naam: String, kleur: String?): Boolean {
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COL2_VAKKEN, naam)
         contentValues.put(COL3_KLEUR, kleur)
-        db.update(TABLE_NAME1, contentValues, "VAK = ?", arrayOf(naam))
+        val affectedRows = db.update(TABLE_NAME1, contentValues, "ID = ?", arrayOf(id.toString()))
+        if (affectedRows == 0){
+            insertData(naam, kleur)
+        }
         return true
     }
 

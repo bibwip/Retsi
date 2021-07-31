@@ -81,7 +81,8 @@ class LoginFragment : NoToolBarFragment(R.layout.fragment_login_user) {
         auth.signInWithEmailAndPassword(email, password).addOnSuccessListener {
             Log.d(TAG, "sign in with email completed, email: $email")
 
-            (activity as MainActivity).importDataFromFirestore(DatabaseHelper(requireContext()))
+            (activity as MainActivity).overrideDataFromFirestore(DatabaseHelper(requireContext()))
+            (activity as MainActivity).importVakkenFromFirestore(DatabaseHelper(requireContext()))
 
             val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
             findNavController().navigate(action)

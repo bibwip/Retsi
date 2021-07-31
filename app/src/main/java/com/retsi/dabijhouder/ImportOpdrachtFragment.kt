@@ -21,10 +21,9 @@ class ImportOpdrachtFragment: NoToolBarFragment(R.layout.fragment_import_opdrach
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentImportOpdrachtBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onDestroyView() {

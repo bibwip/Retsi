@@ -5,7 +5,7 @@
         android:id="@+id/action_share"
         android:title="@string/deel"
         android:icon="@drawable/ic_share"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         android:orderInCategory="1" />
 
     <item
@@ -14,4 +14,20 @@
         android:icon="@drawable/ic_settings"
         app:showAsAction="ifRoom"
         android:orderInCategory="2"/>
+
+    <item
+        android:id="@+id/menu_action_upload"
+        android:title="Save to cloud"
+        android:icon="@drawable/ic_cloud_upload"
+        app:showAsAction="always"
+        android:orderInCategory="0"/>
+
+    <item
+        android:id="@+id/menu_action_dowload"
+        android:title="import from cloud"
+        android:icon="@drawable/ic_cloud_dowload"
+        app:showAsAction="always"
+        android:orderInCategory="0"/>
+
+
 </menu>

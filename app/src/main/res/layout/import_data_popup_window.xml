@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/background"
+    android:padding="16dp">
+
+    <Button
+        android:id="@+id/popup_import_changes_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Import changes from cloud" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This will not delete any data and just import/update changes saved in the cloud" />
+
+    <Button
+        android:layout_marginTop="16dp"
+        android:id="@+id/popup_override_changes_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete and import saved data" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="This wil override all the current data with data stored in the cloud" />
+
+    <CheckBox
+        android:id="@+id/popup_set_default_checkbox"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:text="Set as default choice" />
+
+</LinearLayout>
