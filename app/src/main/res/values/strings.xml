@@ -62,7 +62,9 @@
 
     <string name="deelText">Dit is een vet gaafe en handige app voor school (download hem gwn): </string>
     <string name="importOpdracht">Het vak van deze opdracht heeft u niet. Wilt u deze toevoegen of een ander vak gebruiken?</string>
-    <string name="title_activity_import_opdracht">Import Assignment</string>
+    <string name="title_activity_import_opdracht">Importeer vak</string>
+
+    <string name="bewerk_vakken">Bewerk je vakken</string>
 
     <string-array name="typeOpdrachten">
         <item>Huiswerk</item>
@@ -82,20 +84,7 @@
         <item>Nederlands</item>
         <item>English</item>
     </string-array>
-    <!-- Preference Titles -->
-    <string name="messages_header" translatable="false">Messages</string>
-    <string name="sync_header" translatable="false">Sync</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title" translatable="false">Your signature</string>
-    <string name="reply_title" translatable="false">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title" translatable="false">Sync email periodically</string>
-    <string name="attachment_title" translatable="false">Download incoming attachments</string>
-    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
 
 
 </resources>

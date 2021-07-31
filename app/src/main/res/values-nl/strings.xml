@@ -37,10 +37,11 @@
     <string name="importOpdracht">Het vak van deze opdracht heeft u niet. Wilt u deze toevoegen of een ander vak gebruiken?</string>
     <string name="vakToevoegen">Toevoegen</string>
     <string name="ander">Ander kiezen</string>
-    <string name="title_activity_import_opdracht">Import Assignment</string>
+    <string name="title_activity_import_opdracht">importeer vak</string>
     <string name="nothing_to_do">Tekst groen? Niks te doen!</string>
     <string name="titel_vb">Titel</string>
     <string name="vak_naam_vb">NaamVak</string>
     <string name="datum_vb">Datum</string>
     <string name="beschrijving_vb">Beschrijving</string>
+    <string name="bewerk_vakken">Bewerk je vakken</string>
 </resources>

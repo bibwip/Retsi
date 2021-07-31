@@ -7,11 +7,14 @@
         app:entryValues="@array/talen"
         app:key="taal"
         app:title="@string/kies_taal"
+
+        android:icon="@drawable/ic_language"
         app:useSimpleSummaryProvider="true" />
 
     <Preference
-        android:title="Bewerk vakken"
-        android:key="vakken"/>
+        android:title="@string/bewerk_vakken"
+        android:key="vakken"
+        android:icon="@drawable/ic_edit"/>
 
 
 </PreferenceScreen>
