@@ -9,8 +9,7 @@
 
     <item
         android:id="@+id/menu_action_set_priority"
-        android:title="maak belangrijk"/>
-<!--TODO tekstt hier voor maken    -->
+        android:title="@string/set_priority"/>
 
     <item
         android:id="@+id/action_share_opdracht"

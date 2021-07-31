@@ -85,6 +85,8 @@
         <item>English</item>
     </string-array>
 
+    <string name="set_priority">Markeer als belangrijk</string>
+    <string name="remove_priority">Markeer als onbelangrijk</string>
 
 
 </resources>

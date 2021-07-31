@@ -111,6 +111,9 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         mAdapter!!.setLongClickListener { v, position ->
             val popup = PopupMenu(context, v)
             popup.menuInflater.inflate(R.menu.opdracht_menu, popup.menu)
+            if (mAdapter!!.getItem(position).belangerijk == 1) {
+                popup.menu.findItem(R.id.menu_action_set_priority).title = getString(R.string.remove_priority)
+            }
             popup.setOnMenuItemClickListener { menuItem ->
                 val item: OpdrachtItem = mAdapter!!.getItem(position)
                 when (menuItem.itemId) {

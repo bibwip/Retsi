@@ -44,4 +44,6 @@
     <string name="datum_vb">Datum</string>
     <string name="beschrijving_vb">Beschrijving</string>
     <string name="bewerk_vakken">Bewerk je vakken</string>
+    <string name="set_priority">Markeer als belangrijk</string>
+    <string name="remove_priority">Markeer als onbelangrijk</string>
 </resources>
