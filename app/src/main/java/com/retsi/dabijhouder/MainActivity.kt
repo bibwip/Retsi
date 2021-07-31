@@ -90,7 +90,7 @@ class MainActivity : BaseActivity() {
 
     companion object {
         const val apkURl =
-            "https://drive.google.com/drive/folders/1lVLj9Ucl-RdRX9ABggtomy_8Hi8nsf1y?usp=sharing"
+            "https://play.google.com/store/apps/details?id=com.retsi.dabijhouder"
         const val PREF_VERSION_CODE_KEY = "version_code"
         const val DOESNT_EXIST = -1
     }
