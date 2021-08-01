@@ -32,6 +32,14 @@
         <item>Eindopdracht</item>
         <item>Overig</item>
     </string-array>
+
+    <string-array name="themes">
+        <item>Licht</item>
+        <item>Donker</item>
+        <item>Systeem standaard</item>
+    </string-array>
+
+
     <string name="deelText">"Dit is een vet gaafe en handige app voor school (download hem gwn): "</string>
     <string name="overig">Overig</string>
     <string name="importOpdracht">Het vak van deze opdracht heeft u niet. Wilt u deze toevoegen of een ander vak gebruiken?</string>

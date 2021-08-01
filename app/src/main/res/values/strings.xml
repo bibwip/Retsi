@@ -85,6 +85,18 @@
         <item>English</item>
     </string-array>
 
+    <string-array name="themes">
+        <item>Licht</item>
+        <item>Donker</item>
+        <item>Systeem standaard</item>
+    </string-array>
+
+    <string-array name="themes_keys">
+        <item>licht</item>
+        <item>donker</item>
+        <item>systeem</item>
+    </string-array>
+
     <string name="set_priority">Markeer als belangrijk</string>
     <string name="remove_priority">Markeer als onbelangrijk</string>
 

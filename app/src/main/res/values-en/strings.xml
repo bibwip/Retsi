@@ -25,6 +25,12 @@
     <string name="type_opdracht">Assignment Type</string>
     <string name="vak">Subject</string>
 
+    <string-array name="themes">
+        <item>Light</item>
+        <item>Dark</item>
+        <item>System default</item>
+    </string-array>
+
 
     <string-array name="typeOpdrachten">
         <item>Homework</item>
