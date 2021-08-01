@@ -88,5 +88,11 @@
     <string name="set_priority">Markeer als belangrijk</string>
     <string name="remove_priority">Markeer als onbelangrijk</string>
 
+    <string name="share_1">Hallo, druk op volgende link om mijn gedeelde opdracht toe te voegen op jouw telefoon.
 
+%1$s
+
+Heb jij Retsi nog niet gedownload? doe dat dan snel!
+
+https://play.google.com/store/apps/details?id=com.retsi.dabijhoude</string>
 </resources>

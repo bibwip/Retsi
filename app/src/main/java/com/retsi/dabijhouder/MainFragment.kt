@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.BaseTransientBottomBar
 import com.google.android.material.snackbar.Snackbar
 import com.retsi.dabijhouder.databinding.FragmentMainBinding
-import kotlin.collections.ArrayList
 
 class MainFragment : Fragment(R.layout.fragment_main) {
     
@@ -149,8 +148,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
                             )
                         val url = builder.build().toString()
                         val shareItem = Intent()
+
+                        val textToShare = getString(R.string.share_1, url)
+
                         shareItem.setAction(Intent.ACTION_SEND)
-                            .putExtra(Intent.EXTRA_TEXT, url).type = "text/plain"
+                            .setType("text/plain")
+                            .putExtra(Intent.EXTRA_TEXT, textToShare)
                         val sendIntent = Intent.createChooser(shareItem, null)
                         startActivity(sendIntent)
                         true
