@@ -4,6 +4,7 @@ import android.appwidget.AppWidgetManager
 import android.content.Context
 import android.content.Intent
 import android.database.Cursor
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -72,6 +73,10 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         mAdapter!!.setClickListener { v, position ->
             if (v.id == R.id.img_btn_check_opdracht) {
+
+                var mediaPlayer = MediaPlayer.create(requireContext(), R.raw.ping)
+                mediaPlayer.start()
+
                 if (opdrachtbackup != null) {
                     toBeDeleted.add(opdrachtbackup!!.id)
                 }
