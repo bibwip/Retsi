@@ -14,10 +14,9 @@ class CustomContextWrapper extends android.content.ContextWrapper {
         super(base);
     }
 
-    @SuppressWarnings("deprecation")
     public static ContextWrapper wrap(Context context, String language) {
         Configuration config = context.getResources().getConfiguration();
-        Locale sysLocale = null;
+        Locale sysLocale;
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
             sysLocale = getSystemLocale(config);
         } else {
@@ -41,7 +40,6 @@ class CustomContextWrapper extends android.content.ContextWrapper {
         return new CustomContextWrapper(context);
     }
 
-    @SuppressWarnings("deprecation")
     public static Locale getSystemLocaleLegacy(Configuration config){
         return config.locale;
     }
@@ -51,7 +49,6 @@ class CustomContextWrapper extends android.content.ContextWrapper {
         return config.getLocales().get(0);
     }
 
-    @SuppressWarnings("deprecation")
     public static void setSystemLocaleLegacy(Configuration config, Locale locale){
         config.locale = locale;
     }

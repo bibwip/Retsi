@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class VakkenListAdapter extends RecyclerView.Adapter<VakkenListAdapter.VakViewHolder> {
 
-    private ArrayList<VakItem> mOpdrachtItems;
+    private final ArrayList<VakItem> mOpdrachtItems;
     private ItemClickListener mClickListener;
 
     public interface ItemClickListener {
@@ -37,8 +37,7 @@ public class VakkenListAdapter extends RecyclerView.Adapter<VakkenListAdapter.Va
     @Override
     public VakViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.vakken_list_item, parent, false);
-        VakViewHolder ovh = new VakViewHolder(v, mClickListener);
-        return ovh;
+        return new VakViewHolder(v, mClickListener);
     }
 
     @Override
@@ -64,8 +63,8 @@ public class VakkenListAdapter extends RecyclerView.Adapter<VakkenListAdapter.Va
     }
 
     public class VakViewHolder extends RecyclerView.ViewHolder{
-        private TextView tv_color_picker, vaknaam, tv_delete_vak;
-        private ImageView img_color_picker, img_delete_vak;
+        private final TextView tv_color_picker, vaknaam, tv_delete_vak;
+        private final ImageView img_color_picker, img_delete_vak;
         private CardView parent;
 
 
@@ -78,14 +77,11 @@ public class VakkenListAdapter extends RecyclerView.Adapter<VakkenListAdapter.Va
             tv_delete_vak = itemView.findViewById(R.id.tv_delete_vak);
             img_delete_vak = itemView.findViewById(R.id.image_delete_vak);
 
-            View.OnClickListener onClickListener = new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listener != null){
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listener.onItemClick(view, position);
-                        }
+            View.OnClickListener onClickListener = view -> {
+                if (listener != null){
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(view, position);
                     }
                 }
             };

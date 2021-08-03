@@ -12,8 +12,8 @@ import com.retsi.dabijhouder.databinding.FragmentChooseLanguageBinding
 
 class ChooseLanguageFragment : NoToolBarFragment(R.layout.fragment_choose_language) {
 
-    var PREFS_NAME = "MyPrefsFile"
-    var LANGUAGE_KEY = "language"
+    private var PREFS_NAME = "MyPrefsFile"
+    private var LANGUAGE_KEY = "language"
 
     private var _binding: FragmentChooseLanguageBinding? = null
     private val binding get() = _binding!!
@@ -24,8 +24,7 @@ class ChooseLanguageFragment : NoToolBarFragment(R.layout.fragment_choose_langua
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentChooseLanguageBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -48,11 +47,11 @@ class ChooseLanguageFragment : NoToolBarFragment(R.layout.fragment_choose_langua
         }
     }
 
-    fun SaveLanguage(lang : String) {
+    private fun SaveLanguage(lang : String) {
         val prefs: SharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         prefs.edit().putString(LANGUAGE_KEY, lang).apply()
     }
-    fun getLanguage(): Int {
+    private fun getLanguage(): Int {
         val res = resources
         val lang = res.configuration.locale.toString()
         return if (lang == "en" || lang == "en_US") 0 else if (lang == "nl") 1 else 0

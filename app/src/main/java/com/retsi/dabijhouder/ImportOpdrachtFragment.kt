@@ -21,10 +21,9 @@ class ImportOpdrachtFragment: NoToolBarFragment(R.layout.fragment_import_opdrach
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentImportOpdrachtBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -49,7 +48,7 @@ class ImportOpdrachtFragment: NoToolBarFragment(R.layout.fragment_import_opdrach
         )
         binding.importSpinner.adapter = spinnerAdapter
 
-        binding.importToevoegen.setOnClickListener(View.OnClickListener {
+        binding.importToevoegen.setOnClickListener {
             myDb.insertData(binding.importVak.text.toString(), "#FFF6F1")
             myDb.insertData(
                 args.typeOpdrachtKey,
@@ -59,12 +58,12 @@ class ImportOpdrachtFragment: NoToolBarFragment(R.layout.fragment_import_opdrach
                 args.beschrijving
             )
             view.findNavController().navigate(action)
-        })
-        binding.importAnder.setOnClickListener(View.OnClickListener {
+        }
+        binding.importAnder.setOnClickListener{
             binding.importSpinner.visibility = View.VISIBLE
             binding.importSave.visibility = View.VISIBLE
-        })
-        binding.importSave.setOnClickListener(View.OnClickListener {
+        }
+        binding.importSave.setOnClickListener{
             myDb.insertData(
                 args.typeOpdrachtKey,
                 binding.importSpinner.selectedItem.toString(),
@@ -73,6 +72,6 @@ class ImportOpdrachtFragment: NoToolBarFragment(R.layout.fragment_import_opdrach
                 args.beschrijving
             )
             view.findNavController().navigate(action)
-        })
+        }
     }
 }

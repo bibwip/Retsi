@@ -1,5 +1,6 @@
 package com.retsi.dabijhouder;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -29,8 +30,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL2_VAKKEN = "VAK";
     public static final String COL3_KLEUR = "KLEUR";
 
-    private ArrayList<ContentValues> table1data = new ArrayList<>();
-    private ArrayList<ContentValues> table2data = new ArrayList<>();
+    private final ArrayList<ContentValues> table1data = new ArrayList<>();
+    private final ArrayList<ContentValues> table2data = new ArrayList<>();
     private boolean updated = false;
 
 
@@ -56,7 +57,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < newVersion && oldVersion != 0){
-            Cursor res = db.rawQuery("select * from "+TABLE_NAME, null);
+            @SuppressLint("Recycle") Cursor res = db.rawQuery("select * from "+TABLE_NAME, null);
             while (res.moveToNext()){
                 ContentValues contentValues = new ContentValues();
                 contentValues.put(COL_2, res.getString(res.getColumnIndex(COL_2)));
@@ -68,7 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 table1data.add(contentValues);
             }
 
-            Cursor res2 = db.rawQuery("select * from "+TABLE_NAME1, null);
+            @SuppressLint("Recycle") Cursor res2 = db.rawQuery("select * from "+TABLE_NAME1, null);
             while (res2.moveToNext()){
                 ContentValues contentValues2 = new ContentValues();
                 contentValues2.put(COL2_VAKKEN, res2.getString(res2.getColumnIndex(COL2_VAKKEN)));
@@ -104,16 +105,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_6,beschrijving);
         contentValues.put(COL_7, 0);
         long result = db.insert(TABLE_NAME, null, contentValues);
-        if (result == -1) {
-            return false;
-        } else return true;
+        return result != -1;
 
     }
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("select * from "+TABLE_NAME, null);
-        return res;
+        return db.rawQuery("select * from "+TABLE_NAME, null);
     }
 
     public boolean insertData(String vak, String kleur) {
@@ -122,15 +120,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL2_VAKKEN,vak);
         contentValues.put(COL3_KLEUR, kleur);
         long result = db.insert(TABLE_NAME1, null, contentValues);
-        if (result == -1) {
-            return false;
-        } else return true;
+        return result != -1;
     }
 
     public ArrayList<VakItem> getAllData2() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from "+TABLE_NAME1, null);
-        ArrayList<VakItem> arrayList = new ArrayList<VakItem>();
+        ArrayList<VakItem> arrayList = new ArrayList<>();
 
         if (res.getCount() == 0) {
             return arrayList;
@@ -187,13 +183,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+" WHERE ID = '"+ID+"'", null);
         c.moveToNext();
-        OpdrachtItem item = new OpdrachtItem(c.getInt(c.getColumnIndex(COL_1)),
+        return new OpdrachtItem(c.getInt(c.getColumnIndex(COL_1)),
                 c.getString(c.getColumnIndex(COL_2)),
                 c.getString(c.getColumnIndex(COL_3)), c.getString(c.getColumnIndex(COL_4)),
                 c.getString(c.getColumnIndex(COL_5)), c.getString(c.getColumnIndex(COL_6)),
                 c.getInt(c.getColumnIndex(COL_7)),
                 null, null);
-        return item;
     }
 
     public void SetBelangerijk(int id, int waarde){

@@ -30,10 +30,9 @@ class AddSubjectsFragment : NoToolBarFragment(R.layout.fragment_add_subjects), V
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddSubjectsBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onDestroyView() {

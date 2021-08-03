@@ -65,6 +65,7 @@
     <string name="title_activity_import_opdracht">Importeer vak</string>
 
     <string name="bewerk_vakken">Bewerk je vakken</string>
+    <string name="theme">Thema (Beta!)</string>
 
     <string-array name="typeOpdrachten">
         <item>Huiswerk</item>

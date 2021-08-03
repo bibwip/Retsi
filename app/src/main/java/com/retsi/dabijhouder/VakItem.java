@@ -1,7 +1,7 @@
 package com.retsi.dabijhouder;
 
 public class VakItem {
-    private String naam, color;
+    private final String naam, color;
 
     public VakItem(String naam, String color) {
         this.naam = naam;

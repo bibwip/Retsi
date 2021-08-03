@@ -19,7 +19,7 @@ class EditOpdrachtFragment : NoToolBarFragment(R.layout.fragment_edit_opdracht) 
     private lateinit var myDb: DatabaseHelper
 
 
-    lateinit var vak: String
+    private lateinit var vak: String
     lateinit var titel: String
     lateinit var type: String
     lateinit var beschrijving: String

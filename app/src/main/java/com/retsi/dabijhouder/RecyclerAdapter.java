@@ -1,7 +1,5 @@
 package com.retsi.dabijhouder;
 
-import android.content.ContentValues;
-import android.content.Context;
 import android.graphics.Color;
 import android.transition.TransitionManager;
 import android.view.LayoutInflater;
@@ -23,8 +21,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
     private ArrayList<OpdrachtItem> mOpdrachtItems;
     private ItemClickListener mClickListener;
     private LongItemClickListener mLongItemClickListener;
-    private DatabaseHelper myDb;
-    private Context context;
+    private final DatabaseHelper myDb;
 
     public interface ItemClickListener {
         void onItemClick(View v, int position);
@@ -34,10 +31,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
         void onItemLongClick(View v, int position);
     }
 
-    public RecyclerAdapter(ArrayList<OpdrachtItem> opdrachtItems, DatabaseHelper myDb, Context context) {
+    public RecyclerAdapter(ArrayList<OpdrachtItem> opdrachtItems, DatabaseHelper myDb) {
         mOpdrachtItems = opdrachtItems;
         this.myDb = myDb;
-        this.context = context;
     }
 
     public OpdrachtItem getItem(int position) {
@@ -65,8 +61,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
     public OpdrachtViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.opdracht_item, parent,
                 false);
-        OpdrachtViewHolder ovh = new OpdrachtViewHolder(v, mClickListener, mLongItemClickListener);
-        return ovh;
+        return new OpdrachtViewHolder(v, mClickListener, mLongItemClickListener);
     }
 
     @Override
@@ -105,12 +100,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
         this.mLongItemClickListener = longItemClickListener;
     }
 
-    public class OpdrachtViewHolder extends RecyclerView.ViewHolder{
-        private TextView typeOpdracht, vakNaam, titel, datum, beschrijving, tv_vak_kleur;
-        private RelativeLayout expandedRelLayout;
-        private CardView parent;
-        private ImageButton check_button;
-        private ImageView img_star;
+    public static class OpdrachtViewHolder extends RecyclerView.ViewHolder{
+        private final TextView typeOpdracht, vakNaam, titel, datum, beschrijving, tv_vak_kleur;
+        private final RelativeLayout expandedRelLayout;
+        private final CardView parent;
+        private final ImageButton check_button;
+        private final ImageView img_star;
 
         public OpdrachtViewHolder(@NonNull View itemView, ItemClickListener listener,
                                   LongItemClickListener longListener) {
@@ -126,40 +121,31 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.Opdrac
             check_button = itemView.findViewById(R.id.img_btn_check_opdracht);
             img_star = itemView.findViewById(R.id.opdrachtImgStar);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listener != null){
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listener.onItemClick(view, position);
-                        }
+            itemView.setOnClickListener(view -> {
+                if (listener != null){
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(view, position);
                     }
                 }
             });
 
-            itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View view) {
-                    if (longListener != null){
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            longListener.onItemLongClick(view, position);
-                            return true;
-                        }
+            itemView.setOnLongClickListener(view -> {
+                if (longListener != null){
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        longListener.onItemLongClick(view, position);
+                        return true;
                     }
-                    return false;
                 }
+                return false;
             });
 
-            check_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (listener != null){
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION){
-                            listener.onItemClick(view, position);
-                        }
+            check_button.setOnClickListener(view -> {
+                if (listener != null){
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        listener.onItemClick(view, position);
                     }
                 }
             });

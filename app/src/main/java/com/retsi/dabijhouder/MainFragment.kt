@@ -62,7 +62,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         val recyclerView: RecyclerView = binding.mainRecyclerView
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.setHasFixedSize(true)
-        mAdapter = RecyclerAdapter(setData(), myDb, this.context)
+        mAdapter = RecyclerAdapter(setData(), myDb)
         recyclerView.adapter = mAdapter
 
         if (requireActivity().intent.hasExtra("refresh")) {
@@ -74,7 +74,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         mAdapter!!.setClickListener { v, position ->
             if (v.id == R.id.img_btn_check_opdracht) {
 
-                var mediaPlayer = MediaPlayer.create(requireContext(), R.raw.ping)
+                val mediaPlayer = MediaPlayer.create(requireContext(), R.raw.ping)
                 mediaPlayer.start()
 
                 if (opdrachtbackup != null) {

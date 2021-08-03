@@ -21,7 +21,7 @@
         android:entryValues="@array/themes_keys"
         android:icon="@drawable/ic_dark_mode"
         android:key="dark_key"
-        android:title="Theme"
+        android:title="@string/theme"
         app:useSimpleSummaryProvider="true" />
 
 </PreferenceScreen>
